@@ -2,7 +2,14 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "hero-background": "url('./img/hero.jpg')",
+      },
+      colors: {
+        "beauty-blue": "#02050A",
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {

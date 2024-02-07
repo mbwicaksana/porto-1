@@ -2,10 +2,10 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="hero min-h-screen bg-base-200 lg:px-32">
+    <div className="hero min-h-screen bg-base-300 lg:px-32 bg-hero-background">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img
-          src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+          src="https://placehold.co/200x280"
           className="max-w-sm rounded-lg shadow-2xl"
           alt="hero"
         />
@@ -19,7 +19,7 @@ const Hero = () => {
             Dolore deserunt, consectetur quia consequuntur debitis voluptatem
             impedit possimus sunt ut adipisci minima vitae quibusdam.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <button className="btn btn-primary">Download My CV</button>
         </div>
       </div>
     </div>
