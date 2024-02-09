@@ -4,10 +4,12 @@ const Service = () => {
   return (
     <>
       <div className="bg-beauty-blue">
-        <h1 className="text-5xl font-bold text-center py-10">My Service</h1>
+        <h1 className="text-5xl font-bold text-center py-10 mb-28">
+          My Service
+        </h1>
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-          <div className="card w-96 shadow-none border border-gray-100/20 rounded-xl">
-            <figure className="px-10 pt-10">
+          <div className="card mx-auto w-96 shadow-none border border-gray-100/20 rounded-xl mb-28 lg:mb-auto">
+            <figure className="px-10 pt-10 -translate-y-28">
               <img
                 src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
                 alt="Shoes"
@@ -22,8 +24,8 @@ const Service = () => {
               </div>
             </div>
           </div>
-          <div className="card w-96 shadow-none border border-gray-100/20 rounded-xl">
-            <figure className="px-10 pt-10">
+          <div className="card mx-auto w-96 shadow-none border border-gray-100/20 rounded-xl mb-28 lg:mb-auto">
+            <figure className="px-10 pt-10 -translate-y-28">
               <img
                 src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
                 alt="Shoes"
@@ -38,8 +40,8 @@ const Service = () => {
               </div>
             </div>
           </div>
-          <div className="card w-96 shadow-none border border-gray-100/20 rounded-xl">
-            <figure className="px-10 pt-10">
+          <div className="card mx-auto w-96 shadow-none border border-gray-100/20 rounded-xl mb-28 lg:mb-auto">
+            <figure className="px-10 pt-10 -translate-y-28">
               <img
                 src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
                 alt="Shoes"

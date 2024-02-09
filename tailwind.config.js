@@ -8,6 +8,7 @@ module.exports = {
       },
       colors: {
         "beauty-blue": "#02050A",
+        "header-blue": "#141C27",
       },
     },
   },
