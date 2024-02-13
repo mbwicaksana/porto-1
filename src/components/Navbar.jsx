@@ -25,49 +25,43 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-header-blue rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-header-blue rounded-box w-52 text-xl"
             >
               <li>
-                <Link>Item 1</Link>
+                <Link>Home</Link>
               </li>
               <li>
-                <Link>Parent</Link>
-                <ul className="p-2">
-                  <li>
-                    <Link>Submenu 1</Link>
-                  </li>
-                  <li>
-                    <Link>Submenu 2</Link>
-                  </li>
-                </ul>
+                <Link>Services</Link>
               </li>
               <li>
-                <Link>Item 3</Link>
+                <Link>Blogs</Link>
+              </li>
+              <li>
+                <Link>Portfolio</Link>
+              </li>
+              <li>
+                <Link>Contact</Link>
               </li>
             </ul>
           </div>
-          <Link className="btn btn-ghost text-xl">Windelov</Link>
+          <Link className="btn btn-ghost text-2xl lg:text-3xl">Windelov</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 text-m font-semibold">
             <li>
-              <Link>Item 1</Link>
+              <Link>Home</Link>
             </li>
             <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <Link>Submenu 1</Link>
-                  </li>
-                  <li>
-                    <Link>Submenu 2</Link>
-                  </li>
-                </ul>
-              </details>
+              <Link>Services</Link>
             </li>
             <li>
-              <Link>Item 3</Link>
+              <Link>Blogs</Link>
+            </li>
+            <li>
+              <Link>Portfolio</Link>
+            </li>
+            <li>
+              <Link>Contact</Link>
             </li>
           </ul>
         </div>

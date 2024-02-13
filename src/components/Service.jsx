@@ -3,57 +3,61 @@ import React from "react";
 const Service = () => {
   return (
     <>
-      <div className="bg-beauty-blue">
-        <h1 className="text-5xl font-bold text-center py-10 mb-28">
-          My Service
+      <div className="bg-beauty-blue py-28">
+        <h3 className="text-lg font-semibold lg:font-bold lg:text-2xl text-center mb-4">
+          SERVICES
+        </h3>
+        <h1 className="text-2xl lg:text-5xl font-bold text-center mb-40">
+          Creating Seamless User Experiences <br />
+          Across All Platforms.
         </h1>
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
           <div className="card mx-auto w-96 shadow-none border border-gray-100/20 rounded-xl mb-28 lg:mb-auto">
-            <figure className="px-10 pt-10 -translate-y-28">
+            <figure className="px-10 pt-10 -translate-y-20">
               <img
-                src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-                alt="Shoes"
+                src="https://placehold.co/90x90"
+                alt="ReactJS"
                 className="rounded-xl"
               />
             </figure>
-            <div className="card-body items-center text-center">
-              <h2 className="card-title">Shoes!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div className="card-actions">
-                <button className="btn btn-primary">Buy Now</button>
-              </div>
+            <div className="card-body items-center text-center -mt-24 mb-4">
+              <h2 className="card-title my-3 font-bold">LANDING PAGE</h2>
+              <p className="font-medium">
+                Increase your chances of attracting and converting visitors with
+                landing pages specifically designed to achieve your goals.
+              </p>
             </div>
           </div>
           <div className="card mx-auto w-96 shadow-none border border-gray-100/20 rounded-xl mb-28 lg:mb-auto">
-            <figure className="px-10 pt-10 -translate-y-28">
+            <figure className="px-10 pt-10 -translate-y-20">
               <img
-                src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-                alt="Shoes"
+                src="https://placehold.co/90x90"
+                alt="ReactJS"
                 className="rounded-xl"
               />
             </figure>
-            <div className="card-body items-center text-center">
-              <h2 className="card-title">Shoes!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div className="card-actions">
-                <button className="btn btn-primary">Buy Now</button>
-              </div>
+            <div className="card-body items-center text-center -mt-24 mb-4">
+              <h2 className="card-title my-3 font-bold">PERSONAL BLOGS</h2>
+              <p className="font-medium">
+                Create a beautiful, informative, and interactive personal blog
+                with an easy-to-use Admin system for blog posts.
+              </p>
             </div>
           </div>
-          <div className="card mx-auto w-96 shadow-none border border-gray-100/20 rounded-xl mb-28 lg:mb-auto">
-            <figure className="px-10 pt-10 -translate-y-28">
+          <div className="card mx-auto w-96 shadow-none border border-gray-100/20 rounded-xl">
+            <figure className="px-10 pt-10 -translate-y-20">
               <img
-                src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-                alt="Shoes"
+                src="https://placehold.co/90x90"
+                alt="ReactJS"
                 className="rounded-xl"
               />
             </figure>
-            <div className="card-body items-center text-center">
-              <h2 className="card-title">Shoes!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div className="card-actions">
-                <button className="btn btn-primary">Buy Now</button>
-              </div>
+            <div className="card-body items-center text-center -mt-24 mb-4">
+              <h2 className="card-title my-3 font-bold">E-COMMERCE</h2>
+              <p className="font-medium">
+                Boost your business with a custom full-stack E-Commerce platform
+                built with NextJS or ReactJS + ExpressJS.
+              </p>
             </div>
           </div>
         </div>
