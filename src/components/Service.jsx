@@ -7,7 +7,7 @@ const Service = () => {
         <h3 className="text-lg font-semibold lg:font-bold lg:text-2xl text-center mb-4">
           SERVICES
         </h3>
-        <h1 className="text-2xl lg:text-5xl font-bold text-center mb-40">
+        <h1 className="text-xl lg:text-5xl font-bold text-center mb-24 lg:mb-40">
           Creating Seamless User Experiences <br />
           Across All Platforms.
         </h1>
@@ -21,8 +21,10 @@ const Service = () => {
               />
             </figure>
             <div className="card-body items-center text-center -mt-24 mb-4">
-              <h2 className="card-title my-3 font-bold">LANDING PAGE</h2>
-              <p className="font-medium">
+              <h2 className="card-title my-3 font-semibold lg:font-bold">
+                LANDING PAGE
+              </h2>
+              <p className="font-light lg:font-medium">
                 Increase your chances of attracting and converting visitors with
                 landing pages specifically designed to achieve your goals.
               </p>
@@ -37,8 +39,10 @@ const Service = () => {
               />
             </figure>
             <div className="card-body items-center text-center -mt-24 mb-4">
-              <h2 className="card-title my-3 font-bold">PERSONAL BLOGS</h2>
-              <p className="font-medium">
+              <h2 className="card-title my-3 font-semibold lg:font-bold">
+                PERSONAL BLOGS
+              </h2>
+              <p className="font-light lg:font-medium">
                 Create a beautiful, informative, and interactive personal blog
                 with an easy-to-use Admin system for blog posts.
               </p>
@@ -53,8 +57,10 @@ const Service = () => {
               />
             </figure>
             <div className="card-body items-center text-center -mt-24 mb-4">
-              <h2 className="card-title my-3 font-bold">E-COMMERCE</h2>
-              <p className="font-medium">
+              <h2 className="card-title my-3 font-semibold lg:font-bold">
+                E-COMMERCE
+              </h2>
+              <p className="font-light lg:font-medium">
                 Boost your business with a custom full-stack E-Commerce platform
                 built with NextJS or ReactJS + ExpressJS.
               </p>

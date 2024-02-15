@@ -7,7 +7,7 @@ const Portfolio = () => {
         <h3 className="text-lg font-semibold lg:font-bold lg:text-2xl lg:mb-4">
           MY RECENT PORTFOLIO
         </h3>
-        <h1 className="text-2xl lg:text-5xl font-bold mb-16">
+        <h1 className="hidden lg:block text-5xl font-bold mb-16">
           A portfolio of website
           <br />
           that showcases my skills and dedication.

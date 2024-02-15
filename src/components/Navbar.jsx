@@ -8,6 +8,7 @@ const Navbar = () => {
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <div className="sr-only">Hamburger Menu</div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -23,6 +24,7 @@ const Navbar = () => {
                 />
               </svg>
             </div>
+            {/* MOBILE NAVBAR */}
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-header-blue rounded-box w-52 text-xl"
@@ -44,8 +46,9 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <Link className="btn btn-ghost text-2xl lg:text-3xl">Windelov</Link>
+          <Link className="btn btn-ghost text-2xl">Windelov</Link>
         </div>
+        {/* DESKTOP NAVBAR */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-m font-semibold">
             <li>

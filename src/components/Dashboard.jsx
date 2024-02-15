@@ -5,7 +5,6 @@ import Service from "./Service";
 import Education from "./Education";
 import Portfolio from "./Portfolio";
 import NewsLetter from "./NewsLetter";
-import Contact from "./Contact";
 import Footer from "./Footer";
 
 const Dashboard = () => {
@@ -17,7 +16,6 @@ const Dashboard = () => {
       <Education />
       <Portfolio />
       <NewsLetter />
-      <Contact />
       <Footer />
     </>
   );
