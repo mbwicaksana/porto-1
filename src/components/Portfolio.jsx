@@ -3,7 +3,7 @@ import React from "react";
 const Portfolio = () => {
   return (
     <>
-      <div className="bg-beauty-blue py-12 lg:py-24 px-24">
+      <div id="portfolio" className="bg-beauty-blue py-12 lg:py-24 px-24">
         <h3 className="text-lg font-semibold lg:font-bold lg:text-2xl lg:mb-4">
           MY RECENT PORTFOLIO
         </h3>
