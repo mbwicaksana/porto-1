@@ -1,29 +1,24 @@
+import dotenv from "dotenv";
 import express from "express";
-import { PrismaClient } from "@prisma/client";
+import cors from "cors";
+import PostRoute from "./src/routes/Post.js";
+import UserRoute from "./src/routes/User.js";
+import HomeController from "./src/controllers/homeController.js";
+import fs from "fs";
 
-const prisma = new PrismaClient();
+dotenv.config();
+
 const app = express();
 
-app.get("/users", async (req, res) => {
-  const users = await prisma.user.findMany({
-    include: {
-      posts: true,
-      profile: true,
-    },
-  });
-});
+const router = express.Router();
 
-app.post("/addUser", async (req, res) => {
-  const response = await prisma.user.create({
-    data: {
-      name: "Alice",
-      email: "alice@prisma.io",
-      posts: {
-        create: { title: "Hello World" },
-      },
-      profile: {
-        create: { bio: "I like turtles" },
-      },
-    },
-  });
+router.get("/", HomeController.renderHomePage);
+
+app.use(cors());
+app.use(express.json());
+app.use(PostRoute);
+app.use(UserRoute);
+
+app.listen(process.env.PORT, () => {
+  console.log("Server is RUNNING on PORT : ", process.env.PORT);
 });
