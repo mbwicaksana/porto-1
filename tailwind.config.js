@@ -9,11 +9,10 @@ module.exports = {
         "hero-shape": "url('./img/hero-shape.png')",
       },
       colors: {
-        "beauty-blue": "#02050A", // used for darker background
-        "beauty-blue-lighter": "#09101A", // used for lighter background
-        "header-blue": "#141C27", // used for header
-        "great-golden": "#55E6A5", // used for font and outline
-        "main-grey": "#151C25", // used for progress bar in Education
+        "primary-dark": "#02050A", // used for darker background
+        "primary-light": "#09101A", // used for lighter background
+        secondary: "#141C27", // used for header
+        accent: "#55E6A5", // used for font and outline
       },
       height: {
         128: "32rem",

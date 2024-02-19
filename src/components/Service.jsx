@@ -3,7 +3,7 @@ import React from "react";
 const Service = () => {
   return (
     <>
-      <div id="services" className="bg-beauty-blue py-28">
+      <div id="services" className="bg-primary-dark py-28">
         <h3 className="text-lg font-semibold lg:font-bold lg:text-2xl text-center mb-4">
           SERVICES
         </h3>
@@ -11,7 +11,7 @@ const Service = () => {
           Creating Seamless User Experiences <br />
           Across All Platforms.
         </h1>
-        <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
           <div className="card mx-auto w-96 shadow-none border border-gray-100/20 rounded-xl mb-28 lg:mb-auto">
             <figure className="px-10 pt-10 -translate-y-20">
               <img

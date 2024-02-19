@@ -3,7 +3,7 @@ import React from "react";
 const Education = () => {
   return (
     <>
-      <div className="bg-beauty-blue-lighter py-12 lg:py-24 px-12 lg:px-24">
+      <div className="bg-primary-light py-12 lg:py-24 px-12 lg:px-24">
         <h3 className="text-center text-lg font-semibold lg:font-bold lg:text-2xl mb-4">
           EDUCATION & SKILL
         </h3>
@@ -68,7 +68,7 @@ const Education = () => {
         {/* END OF TIMELINE EDUCATION & SKILL */}
         {/* START OF SKILL PROGRESS BAR */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mb-4 lg:mb-14">
-          <div className="h-auto bg-main-grey">
+          <div className="h-auto bg-primary-dark">
             <div className="pl-10 py-4 font-bold">Javascript</div>
             <progress
               className="progress progress-warning min-w-full bg-transparent"
@@ -76,7 +76,7 @@ const Education = () => {
               max="100"
             ></progress>
           </div>
-          <div className="h-auto bg-main-grey">
+          <div className="h-auto bg-primary-dark">
             <div className="pl-10 py-4 font-bold">ReactJS</div>
             <progress
               className="progress progress-warning min-w-full bg-transparent"
@@ -86,7 +86,7 @@ const Education = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mb-4 lg:mb-14">
-          <div className="h-auto bg-main-grey">
+          <div className="h-auto bg-primary-dark">
             <div className="pl-10 py-4 font-bold">ExpressJS</div>
             <progress
               className="progress progress-warning min-w-full bg-transparent"
@@ -94,7 +94,7 @@ const Education = () => {
               max="100"
             ></progress>
           </div>
-          <div className="h-auto bg-main-grey">
+          <div className="h-auto bg-primary-dark">
             <div className="pl-10 py-4 font-bold">NextJS</div>
             <progress
               className="progress progress-warning min-w-full bg-transparent"
@@ -104,7 +104,7 @@ const Education = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
-          <div className="h-auto bg-main-grey">
+          <div className="h-auto bg-primary-dark">
             <div className="pl-10 py-4 font-bold">MySQL</div>
             <progress
               className="progress progress-warning min-w-full bg-transparent"
@@ -112,7 +112,7 @@ const Education = () => {
               max="100"
             ></progress>
           </div>
-          <div className="h-auto bg-main-grey">
+          <div className="h-auto bg-primary-dark">
             <div className="pl-10 py-4 font-bold">Wordpress</div>
             <progress
               className="progress progress-warning min-w-full bg-transparent"
