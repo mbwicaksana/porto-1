@@ -22,10 +22,11 @@ const Hero = () => {
             <p className="hidden lg:block py-6 lg:mr-40 text-xl mb-16 font-medium">
               I am a Full-stack Web Developer with a primary focus on back-end
               development. I have experience designing and building robust and
-              scalable web applications using ReactJS, NextJS, and ExpressJS. I
-              am passionate about creating intuitive and user-friendly web
-              applications, and I have the ability to tackle various technical
-              challenges and continuously learn in the field of web technology.
+              scalable web applications using ReactJS, NextJS, and ExpressJS.
+              <br />I am passionate about creating intuitive and user-friendly
+              web applications, and I have the ability to tackle various
+              technical challenges and continuously learn in the field of web
+              technology.
             </p>
             <p className="lg:hidden py-6 text-base font-light">
               I am a Full-stack Web Developer with a primary focus on back-end

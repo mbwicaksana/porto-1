@@ -3,7 +3,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <>
-      <div className="navbar bg-header-blue sticky top-0 z-30">
+      <div className="navbar bg-secondary sticky top-0 z-30 text-accent">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -26,44 +26,55 @@ const Navbar = () => {
             {/* MOBILE NAVBAR */}
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-header-blue rounded-box w-52 text-xl"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-secondary rounded-box w-52 text-xl"
             >
               <li>
-                <a href="/#">Home</a>
+                <a href="/">Home</a>
               </li>
               <li>
-                <a>Services</a>
+                <a href="/#services">Services</a>
               </li>
               <li>
-                <a>Blogs</a>
+                <a href="/blogs">Blogs</a>
               </li>
               <li>
-                <a>Portfolio</a>
+                <a href="/#portfolio">Portfolio</a>
               </li>
               <li>
-                <a>Contact</a>
+                <a href="contact">Contact</a>
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-2xl">Windelov</a>
+          <a href="/" className="btn btn-ghost text-2xl">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.707L8 2.207 1.354 8.853a.5.5 0 1 1-.708-.707z" />
+              <path d="m14 9.293-6-6-6 6V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5zm-6-.811c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.691 0-5.018" />
+            </svg>
+          </a>
         </div>
         {/* DESKTOP NAVBAR */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-m font-semibold">
+          <ul className="menu menu-horizontal px-1 text-lg font-semibold">
             <li>
-              <a href="/#hero">Home</a>
+              <a href="/">Home</a>
             </li>
             <li>
               <a href="/#services">Services</a>
             </li>
             <li>
-              <a>Blogs</a>
+              <a href="/blogs">Blogs</a>
             </li>
             <li>
               <a href="/#portfolio">Portfolio</a>
             </li>
             <li>
-              <a>Contact</a>
+              <a href="contact">Contact</a>
             </li>
           </ul>
         </div>
