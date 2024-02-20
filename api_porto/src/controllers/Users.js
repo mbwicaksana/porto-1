@@ -57,12 +57,13 @@ export const getUserById = async (req, res) => {
 
 export const createUser = async (req, res) => {
   try {
-    const { email, name, bio } = req.body;
+    const { email, name, bio, role } = req.body;
 
     const newUser = await prisma.user.create({
       data: {
         email,
         name,
+        role,
         profile: {
           create: { bio }, // Create profile if necessary
         },
@@ -108,6 +109,10 @@ export const updateUser = async (req, res) => {
       updateData.name = req.body.name;
     }
 
+    if (req.body.hasOwnProperty("role")) {
+      updateData.role = req.body.role;
+    }
+
     const updatedUser = await prisma.user.update({
       where: { id: userId },
       data: updateData,
@@ -136,12 +141,27 @@ export const deleteUser = async (req, res) => {
       return res.status(400).json({ message: "Invalid user ID" });
     }
 
+    // Check if user exists (same as before)
     const user = await prisma.user.findUnique({ where: { id: userId } });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
+    // Check if user has a profile (using `include` for efficiency)
+    const userWithProfile = await prisma.user.findUnique({
+      where: { id: userId },
+      include: { profile: true },
+    });
+
+    if (userWithProfile.profile) {
+      // Delete the profile only if it exists
+      await prisma.profile.delete({
+        where: { id: userWithProfile.profile.id },
+      });
+    }
+
+    // Now delete the user
     await prisma.user.delete({ where: { id: userId } });
 
     res.status(200).json({ message: "User deleted successfully" });
