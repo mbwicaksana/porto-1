@@ -39,12 +39,12 @@ export const getPostById = async (req, res) => {
 
 export const createPost = async (req, res) => {
   try {
-    const { title, content, published, authorId } = req.body;
+    const { title, body, published, authorId } = req.body;
 
     const newPost = await prisma.post.create({
       data: {
         title,
-        content,
+        body,
         published,
         authorId: parseInt(authorId), // Ensure numeric ID
       },
@@ -60,13 +60,13 @@ export const createPost = async (req, res) => {
 export const updatePost = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, content, published } = req.body;
+    const { title, body, published } = req.body;
 
     const updatedPost = await prisma.post.update({
       where: { id: parseInt(id) }, // Ensure numeric ID
       data: {
         title,
-        content,
+        body,
         published,
       },
     });

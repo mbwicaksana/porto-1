@@ -4,7 +4,11 @@ export const getUsers = async (req, res) => {
   try {
     const users = await prisma.user.findMany({
       include: {
-        profile: true,
+        comments: {
+          select: {
+            body: true,
+          },
+        },
         posts: {
           select: {
             id: true,
@@ -33,7 +37,11 @@ export const getUserById = async (req, res) => {
     const user = await prisma.user.findUnique({
       where: { id: userId },
       include: {
-        profile: true,
+        comments: {
+          select: {
+            body: true,
+          },
+        },
         posts: {
           select: {
             id: true,
@@ -64,9 +72,6 @@ export const createUser = async (req, res) => {
         email,
         name,
         role,
-        profile: {
-          create: { bio }, // Create profile if necessary
-        },
       },
     });
 
@@ -146,19 +151,6 @@ export const deleteUser = async (req, res) => {
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
-    }
-
-    // Check if user has a profile (using `include` for efficiency)
-    const userWithProfile = await prisma.user.findUnique({
-      where: { id: userId },
-      include: { profile: true },
-    });
-
-    if (userWithProfile.profile) {
-      // Delete the profile only if it exists
-      await prisma.profile.delete({
-        where: { id: userWithProfile.profile.id },
-      });
     }
 
     // Now delete the user
