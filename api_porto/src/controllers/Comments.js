@@ -56,8 +56,9 @@ export const updateComment = async (req, res) => {
   const { name, email, body } = req.body;
 
   try {
+    const commentId = parseInt(id);
     const comment = await prisma.comment.update({
-      where: { id },
+      where: { id: commentId },
       data: { name, email, body },
     });
 

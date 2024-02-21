@@ -4,11 +4,6 @@ export const getUsers = async (req, res) => {
   try {
     const users = await prisma.user.findMany({
       include: {
-        comments: {
-          select: {
-            body: true,
-          },
-        },
         posts: {
           select: {
             id: true,
@@ -39,6 +34,8 @@ export const getUserById = async (req, res) => {
       include: {
         comments: {
           select: {
+            name: true,
+            email: true,
             body: true,
           },
         },

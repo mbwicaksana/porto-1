@@ -4,10 +4,17 @@ import cors from "cors";
 import PostRoute from "./src/routes/Post.js";
 import UserRoute from "./src/routes/User.js";
 import CommentRoute from "./src/routes/Comment.js";
+import favicon from "express-favicon";
 
 dotenv.config();
 
 const app = express();
+
+app.use(favicon("favicon.ico"));
+
+app.get("/", (req, res) => {
+  res.send("Hey Express !");
+});
 
 app.use(cors());
 app.use(express.json());
