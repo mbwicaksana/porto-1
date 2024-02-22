@@ -26,9 +26,16 @@ model User {
   id       Int       @id @default(autoincrement())
   email    String    @unique
   name     String?
-  role     String
+  password String
+  role     UserRole
   posts    Post[]
   comments Comment[]
+  Session  Session[]
+}
+
+enum UserRole {
+  admin
+  user
 }
 
 model Comment {
@@ -42,4 +49,14 @@ model Comment {
   body      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Session {
+  id            Int      @id @default(autoincrement())
+  userId        Int
+  expiresAt     DateTime
+  hashedSession String
+  user          User     @relation(fields: [userId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

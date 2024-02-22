@@ -1,4 +1,5 @@
 import { prisma } from "../config/prisma-client.js";
+import argon2 from "argon2";
 
 export const getUsers = async (req, res) => {
   try {
@@ -62,19 +63,41 @@ export const getUserById = async (req, res) => {
 
 export const createUser = async (req, res) => {
   try {
-    const { email, name, bio, role } = req.body;
+    const { email, name, role, password, confirmPassword } = req.body;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: "Passwords do not match" });
+    }
+
+    // Validate password format
+    if (!passwordRegex.test(password)) {
+      return res.status(400).json({
+        message:
+          "Password must be at least 8 characters and contain at least one uppercase letter, one lowercase letter, and one digit",
+      });
+    }
+
+    const hashedPassword = await argon2.hash(password);
 
     const newUser = await prisma.user.create({
       data: {
         email,
         name,
         role,
+        password: hashedPassword,
       },
     });
 
-    res
-      .status(201)
-      .json({ message: "User created successfully", user: newUser });
+    const user = await prisma.user.findUnique({
+      where: { id: newUser.id },
+      select: {
+        name: true,
+        email: true,
+      },
+    });
+
+    res.status(201).json({ message: "User created successfully", user });
   } catch (error) {
     console.error(error);
 
