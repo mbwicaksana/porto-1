@@ -1,5 +1,6 @@
 import { prisma } from "../config/prisma-client.js";
-import argon2 from "argon2";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const getUsers = async (req, res) => {
   try {
@@ -70,7 +71,7 @@ export const createUser = async (req, res) => {
       return res.status(400).json({ message: "Passwords do not match" });
     }
 
-    // Validate password format
+    // Validate password fo rmat
     if (!passwordRegex.test(password)) {
       return res.status(400).json({
         message:
@@ -78,7 +79,8 @@ export const createUser = async (req, res) => {
       });
     }
 
-    const hashedPassword = await argon2.hash(password);
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = await prisma.user.create({
       data: {
@@ -182,3 +184,9 @@ export const deleteUser = async (req, res) => {
     res.status(500).json({ message: "Error deleting user" });
   }
 };
+
+export const createSession = async (req, res) => {};
+
+export const deleteSession = async (req, res) => {};
+
+export const getCurrentSession = async (req, res) => {};
