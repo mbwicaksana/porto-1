@@ -5,12 +5,25 @@ import jwt from "jsonwebtoken";
 export const getUsers = async (req, res) => {
   try {
     const users = await prisma.user.findMany({
-      include: {
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        role: true,
+        password: false,
         posts: {
           select: {
             id: true,
             title: true,
             createdAt: true,
+          },
+        },
+        comments: {
+          select: {
+            postId: true,
+            name: true,
+            email: true,
+            body: true,
           },
         },
       },
@@ -33,19 +46,25 @@ export const getUserById = async (req, res) => {
 
     const user = await prisma.user.findUnique({
       where: { id: userId },
-      include: {
-        comments: {
-          select: {
-            name: true,
-            email: true,
-            body: true,
-          },
-        },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        role: true,
+        password: false,
         posts: {
           select: {
             id: true,
             title: true,
             createdAt: true,
+          },
+        },
+        comments: {
+          select: {
+            postId: true,
+            name: true,
+            email: true,
+            body: true,
           },
         },
       },
@@ -175,8 +194,13 @@ export const deleteUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Now delete the user
-    await prisma.user.delete({ where: { id: userId } });
+    // Use a transaction to ensure all operations succeed or fail together
+    await prisma.$transaction(async () => {
+      // Delete comments first to avoid foreign key constraint errors
+      await prisma.comment.deleteMany({ where: { authorId: userId } });
+      await prisma.post.deleteMany({ where: { authorId: userId } });
+      await prisma.user.delete({ where: { id: userId } });
+    });
 
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
@@ -185,7 +209,60 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-export const createSession = async (req, res) => {};
+export const createSession = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "Email tidak ditemukan" });
+    }
+
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordMatch) {
+      return res.status(400).json({ message: "Password salah" });
+    }
+
+    const { id, name, email: userEmail } = user;
+
+    const accessToken = jwt.sign(
+      { userId: id, name, email: userEmail },
+      process.env.ACCESS_TOKEN,
+      {
+        expiresIn: "20s",
+      }
+    );
+
+    const refreshToken = jwt.sign(
+      { userId: id, name, email: userEmail },
+      process.env.REFRESH_TOKEN,
+      {
+        expiresIn: "1d",
+      }
+    );
+
+    await prisma.user.update({
+      where: { id },
+      data: {
+        refreshToken: refreshToken,
+      },
+    });
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+
+    res.json({ accessToken });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Terjadi kesalahan server" });
+  }
+};
 
 export const deleteSession = async (req, res) => {};
 

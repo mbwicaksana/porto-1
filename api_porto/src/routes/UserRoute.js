@@ -9,17 +9,17 @@ import {
   deleteSession,
   getCurrentSession,
 } from "../controllers/Users.js";
-// import { AuthMiddleware } from "../middleware/AuthMiddleware.js";
+import { verifyToken } from "../middleware/verifyToken.js";
 
 const router = express.Router();
 
-router.get("/users", getUsers);
-router.get("/users/:id", getUserById);
-router.post("/users", createUser);
-router.patch("/users/:id", updateUser);
-router.delete("/users/delete/:id", deleteUser);
-router.get("/myAccount", getCurrentSession);
+router.get("/users", verifyToken, getUsers);
+router.get("/users/:id", verifyToken, getUserById);
+router.post("/register", createUser);
+router.patch("/users/:id", verifyToken, updateUser);
+router.delete("/users/:id", verifyToken, deleteUser);
+router.get("/myAccount", verifyToken, getCurrentSession);
 router.post("/login", createSession);
-router.delete("/logout", deleteSession);
+router.delete("/logout", verifyToken, deleteSession);
 
 export default router;
