@@ -4,24 +4,20 @@ const Service = () => {
   return (
     <>
       <div id="services" className="bg-primary-dark py-28">
-        <h3 className="text-lg font-semibold lg:font-bold lg:text-2xl text-center mb-4">
+        <h3 className="text-lg font-semibold lg:font-bold lg:text-2xl text-center mb-4 text-accent">
           SERVICES
         </h3>
-        <h1 className="text-xl lg:text-5xl font-bold text-center mb-24 lg:mb-40">
+        <h1 className="text-xl lg:text-5xl font-bold text-center mb-24 lg:mb-40 text-white">
           Creating Seamless User Experiences <br />
           Across All Platforms.
         </h1>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-          <div className="card mx-auto w-96 shadow-none border border-gray-100/20 rounded-xl mb-28 lg:mb-auto">
-            <figure className="px-10 pt-10 -translate-y-20">
-              <img
-                src="https://placehold.co/90x90"
-                alt="ReactJS"
-                className="rounded-xl"
-              />
-            </figure>
-            <div className="card-body items-center text-center -mt-24 mb-4">
-              <h2 className="card-title my-3 font-semibold lg:font-bold">
+          <div className="card mx-auto w-96 shadow-none border border-2 border-gray-100/20 rounded-xl mb-28 lg:mb-auto">
+            <div className="mx-auto -translate-y-11 bg-react-logo bg-no-repeat w-24 h-24">
+              <span className="sr-only">Logo</span>
+            </div>
+            <div className="card-body items-center text-center -mt-14 mb-4">
+              <h2 className="card-title mb-3 font-semibold lg:font-bold">
                 LANDING PAGE
               </h2>
               <p className="font-light lg:font-medium">
@@ -30,16 +26,12 @@ const Service = () => {
               </p>
             </div>
           </div>
-          <div className="card mx-auto w-96 shadow-none border border-gray-100/20 rounded-xl mb-28 lg:mb-auto">
-            <figure className="px-10 pt-10 -translate-y-20">
-              <img
-                src="https://placehold.co/90x90"
-                alt="ReactJS"
-                className="rounded-xl"
-              />
-            </figure>
-            <div className="card-body items-center text-center -mt-24 mb-4">
-              <h2 className="card-title my-3 font-semibold lg:font-bold">
+          <div className="card mx-auto w-96 shadow-none border border-2 border-gray-100/20 rounded-xl mb-28 lg:mb-auto">
+            <div className="mx-auto -translate-y-11 bg-next-logo bg-no-repeat w-48 h-28">
+              <span className="sr-only">Logo</span>
+            </div>
+            <div className="card-body items-center text-center -mt-14 mb-4">
+              <h2 className="card-title mb-3 font-semibold lg:font-bold">
                 PERSONAL BLOGS
               </h2>
               <p className="font-light lg:font-medium">
@@ -48,16 +40,12 @@ const Service = () => {
               </p>
             </div>
           </div>
-          <div className="card mx-auto w-96 shadow-none border border-gray-100/20 rounded-xl">
-            <figure className="px-10 pt-10 -translate-y-20">
-              <img
-                src="https://placehold.co/90x90"
-                alt="ReactJS"
-                className="rounded-xl"
-              />
-            </figure>
-            <div className="card-body items-center text-center -mt-24 mb-4">
-              <h2 className="card-title my-3 font-semibold lg:font-bold">
+          <div className="card mx-auto w-96 shadow-none border border-2 border-gray-100/20 rounded-xl">
+            <div className="mx-auto -translate-y-11 bg-react-logo bg-no-repeat w-24 h-24">
+              <span className="sr-only">Logo</span>
+            </div>
+            <div className="card-body items-center text-center -mt-14 mb-4">
+              <h2 className="card-title mb-3 font-semibold lg:font-bold">
                 E-COMMERCE
               </h2>
               <p className="font-light lg:font-medium">

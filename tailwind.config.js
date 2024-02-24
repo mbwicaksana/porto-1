@@ -7,12 +7,15 @@ module.exports = {
         "hero-background": "url('./img/hero.jpg')",
         "main-parralax": "url('./img/bg-parralax.jpg')",
         "hero-shape": "url('./img/hero-shape.png')",
+        "react-logo": "url(./img/react-logo.svg)",
+        "next-logo": "url(./img/next-logo.svg)",
       },
       colors: {
         "primary-dark": "#02050A", // used for darker background
         "primary-light": "#09101A", // used for lighter background
         secondary: "#141C27", // used for header
         accent: "#55E6A5", // used for font and outline
+        "accent-secondary": "#A2A2A2", // used for font
       },
       height: {
         128: "32rem",
