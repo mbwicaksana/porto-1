@@ -2,8 +2,14 @@ import { prisma } from "../config/prisma-client.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+/**
+ * Controller function to fetch all users along with their posts and comments.
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
 export const getUsers = async (req, res) => {
   try {
+    // Fetch users with their associated posts and comments
     const users = await prisma.user.findMany({
       select: {
         id: true,
@@ -29,6 +35,7 @@ export const getUsers = async (req, res) => {
       },
     });
 
+    // Respond with the fetched users
     res.status(200).json(users);
   } catch (error) {
     console.error(error);
@@ -36,14 +43,21 @@ export const getUsers = async (req, res) => {
   }
 };
 
+/**
+ * Controller function to fetch a user by their ID.
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
 export const getUserById = async (req, res) => {
   try {
-    const userId = parseInt(req.params.id, 10); // Handle invalid IDs gracefully
+    // Parse user ID from request parameters
+    const userId = parseInt(req.params.id, 10);
 
     if (isNaN(userId)) {
       return res.status(400).json({ message: "Invalid user ID" });
     }
 
+    // Fetch user by ID with associated posts and comments
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
@@ -70,10 +84,12 @@ export const getUserById = async (req, res) => {
       },
     });
 
+    // If user not found, return 404
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
+    // Respond with the fetched user
     res.status(200).json(user);
   } catch (error) {
     console.error(error);
@@ -81,16 +97,23 @@ export const getUserById = async (req, res) => {
   }
 };
 
+/**
+ * Controller function to create a new user.
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
 export const createUser = async (req, res) => {
   try {
+    // Extract user details from request body
     const { email, name, role, password, confirmPassword } = req.body;
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
+    // Validate password match
     if (password !== confirmPassword) {
       return res.status(400).json({ message: "Passwords do not match" });
     }
 
-    // Validate password fo rmat
+    // Validate password format
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
     if (!passwordRegex.test(password)) {
       return res.status(400).json({
         message:
@@ -98,9 +121,11 @@ export const createUser = async (req, res) => {
       });
     }
 
+    // Hash the password
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
 
+    // Create the new user
     const newUser = await prisma.user.create({
       data: {
         email,
@@ -110,6 +135,7 @@ export const createUser = async (req, res) => {
       },
     });
 
+    // Respond with success message and user details
     const user = await prisma.user.findUnique({
       where: { id: newUser.id },
       select: {
@@ -122,8 +148,8 @@ export const createUser = async (req, res) => {
   } catch (error) {
     console.error(error);
 
+    // Handle duplicate email errors
     if (error.code === "P2002") {
-      // Handle duplicate email errors
       return res.status(409).json({ message: "Email already exists" });
     }
 
@@ -131,47 +157,55 @@ export const createUser = async (req, res) => {
   }
 };
 
+/**
+ * Controller function to update an existing user.
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
 export const updateUser = async (req, res) => {
   try {
-    const userId = parseInt(req.params.id, 10); // Handle invalid IDs gracefully
+    // Parse user ID from request parameters
+    const userId = parseInt(req.params.id, 10);
 
     if (isNaN(userId)) {
       return res.status(400).json({ message: "Invalid user ID" });
     }
 
+    // Fetch the user to be updated
     const user = await prisma.user.findUnique({ where: { id: userId } });
 
+    // If user not found, return 404
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
+    // Prepare update data based on request body
     const updateData = {};
-
     if (req.body.hasOwnProperty("email")) {
       updateData.email = req.body.email;
     }
-
     if (req.body.hasOwnProperty("name")) {
       updateData.name = req.body.name;
     }
-
     if (req.body.hasOwnProperty("role")) {
       updateData.role = req.body.role;
     }
 
+    // Update the user
     const updatedUser = await prisma.user.update({
       where: { id: userId },
       data: updateData,
     });
 
+    // Respond with success message and updated user details
     res
       .status(200)
       .json({ message: "User updated successfully", user: updatedUser });
   } catch (error) {
     console.error(error);
 
+    // Handle duplicate email errors
     if (error.code === "P2002") {
-      // Handle duplicate email errors
       return res.status(409).json({ message: "Email already exists" });
     }
 
@@ -179,29 +213,36 @@ export const updateUser = async (req, res) => {
   }
 };
 
+/**
+ * Controller function to delete a user.
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
 export const deleteUser = async (req, res) => {
   try {
-    const userId = parseInt(req.params.id, 10); // Handle invalid IDs gracefully
+    // Parse user ID from request parameters
+    const userId = parseInt(req.params.id, 10);
 
     if (isNaN(userId)) {
       return res.status(400).json({ message: "Invalid user ID" });
     }
 
-    // Check if user exists (same as before)
+    // Fetch the user to be deleted
     const user = await prisma.user.findUnique({ where: { id: userId } });
 
+    // If user not found, return 404
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Use a transaction to ensure all operations succeed or fail together
+    // Use transaction to ensure all operations succeed or fail together
     await prisma.$transaction(async () => {
-      // Delete comments first to avoid foreign key constraint errors
       await prisma.comment.deleteMany({ where: { authorId: userId } });
       await prisma.post.deleteMany({ where: { authorId: userId } });
       await prisma.user.delete({ where: { id: userId } });
     });
 
+    // Respond with success message
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     console.error(error);
@@ -209,26 +250,37 @@ export const deleteUser = async (req, res) => {
   }
 };
 
+/**
+ * Controller function to create a user session.
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
 export const createSession = async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    // Find user by email
     const user = await prisma.user.findUnique({
       where: { email },
     });
 
+    // If user not found, return 404
     if (!user) {
       return res.status(404).json({ message: "Email tidak ditemukan" });
     }
 
+    // Check if password matches
     const isPasswordMatch = await bcrypt.compare(password, user.password);
 
+    // If password doesn't match, return 400
     if (!isPasswordMatch) {
       return res.status(400).json({ message: "Password salah" });
     }
 
+    // Extract user details
     const { id, name, email: userEmail } = user;
 
+    // Generate access token
     const accessToken = jwt.sign(
       { userId: id, name, email: userEmail },
       process.env.ACCESS_TOKEN,
@@ -237,6 +289,7 @@ export const createSession = async (req, res) => {
       }
     );
 
+    // Generate refresh token
     const refreshToken = jwt.sign(
       { userId: id, name, email: userEmail },
       process.env.REFRESH_TOKEN,
@@ -245,6 +298,7 @@ export const createSession = async (req, res) => {
       }
     );
 
+    // Update user's refresh token in database
     await prisma.user.update({
       where: { id },
       data: {
@@ -252,18 +306,34 @@ export const createSession = async (req, res) => {
       },
     });
 
+    // Set refresh token in cookie
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
 
-    res.json({ accessToken });
+    // Respond with access token
+    res.json({ accessToken, refreshToken });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Terjadi kesalahan server" });
   }
 };
 
-export const deleteSession = async (req, res) => {};
+/**
+ * Controller function to delete a user session.
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+export const deleteSession = async (req, res) => {
+  // Implementation to be added
+};
 
-export const getCurrentSession = async (req, res) => {};
+/**
+ * Controller function to get current user session.
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+export const getCurrentSession = async (req, res) => {
+  // Implementation to be added
+};

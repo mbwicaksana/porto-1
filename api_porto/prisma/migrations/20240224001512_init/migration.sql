@@ -18,8 +18,8 @@ CREATE TABLE `User` (
     `name` VARCHAR(191) NULL,
     `password` VARCHAR(191) NOT NULL,
     `role` ENUM('admin', 'user') NOT NULL,
-    `access_token` VARCHAR(191) NULL,
-    `refresh_token` VARCHAR(191) NULL,
+    `accessToken` VARCHAR(191) NULL,
+    `refreshToken` VARCHAR(191) NULL,
 
     UNIQUE INDEX `User_email_key`(`email`),
     PRIMARY KEY (`id`)
@@ -45,8 +45,8 @@ CREATE TABLE `Session` (
     `userId` INTEGER NOT NULL,
     `expiresAt` DATETIME(3) NOT NULL,
     `hashedSession` VARCHAR(191) NOT NULL,
-    `access_token` VARCHAR(191) NULL,
-    `refresh_token` VARCHAR(191) NULL,
+    `accessToken` VARCHAR(191) NULL,
+    `refreshToken` VARCHAR(191) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
