@@ -9,7 +9,7 @@ const Footer = () => {
             <img src="https://placehold.co/70x70" alt="logo" />
           </div>
 
-          <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500 dark:text-gray-400 italic font-light">
+          <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-accent-secondary italic font-light">
             “I always wonder why birds choose to stay in the same place when
             they can fly anywhere on the earth, then I ask myself the same
             question.” ― Harun Yahya
@@ -132,11 +132,11 @@ const Footer = () => {
           </ul>
           <div className="mt-12 border-t border-gray-100 pt-6 dark:border-gray-800">
             <div className="text-center sm:flex sm:justify-between sm:text-left">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-accent-secondary">
                 <span className="block sm:inline">All rights reserved. </span>
 
                 <a
-                  className="inline-block text-teal-600 underline transition hover:text-teal-600/75 dark:text-teal-500 dark:hover:text-teal-500/75"
+                  className="inline-block text-accent-secondary underline transition hover:text-teal-600/75 dark:text-teal-500 dark:hover:text-teal-500/75"
                   href="/terms-condition"
                 >
                   Terms & Conditions
@@ -145,14 +145,14 @@ const Footer = () => {
                 <span> &middot; </span>
 
                 <a
-                  className="inline-block text-teal-600 underline transition hover:text-teal-600/75 dark:text-teal-500 dark:hover:text-teal-500/75"
+                  className="inline-block text-accent-secondary underline transition hover:text-teal-600/75 dark:text-teal-500 dark:hover:text-teal-500/75"
                   href="/privacy-policy"
                 >
                   Privacy Policy
                 </a>
               </p>
 
-              <p className="mt-4 text-sm text-gray-500 sm:order-first sm:mt-0 dark:text-gray-400">
+              <p className="mt-4 text-sm text-accent-secondary sm:order-first sm:mt-0 ">
                 &copy; 2024 Windelov
               </p>
             </div>

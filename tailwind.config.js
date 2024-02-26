@@ -7,8 +7,9 @@ module.exports = {
         "hero-background": "url('./img/hero.jpg')",
         "main-parralax": "url('./img/bg-parralax.jpg')",
         "hero-shape": "url('./img/hero-shape.png')",
-        "react-logo": "url(./img/react-logo.svg)",
-        "next-logo": "url(./img/next-logo.svg)",
+        "react-logo": "url(./img/react-logo.png)",
+        "next-logo": "url(./img/next-logo.png)",
+        "express-logo": "url(./img/express-logo.png)",
       },
       colors: {
         "primary-dark": "#02050A", // used for darker background

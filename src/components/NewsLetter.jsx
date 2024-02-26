@@ -5,7 +5,7 @@ const NewsLetter = () => {
     <>
       <div className="mx-auto h-128 max-w-full bg-cover bg-fixed bg-center bg-no-repeat bg-main-parralax">
         <div className="mx-auto min-h-screen bg-black/80 pt-16">
-          <h3 className="text-center font-bold text-2xl lg:text-3xl pt-28 pb-0 lg:pb-10">
+          <h3 className="text-center font-bold text-2xl lg:text-3xl pt-28 pb-0 lg:pb-10 text-accent">
             SUBSCRIBE MY NEWSLETTER
           </h3>
           {/* START OF LG-FORM */}
@@ -23,7 +23,7 @@ const NewsLetter = () => {
             <span className="absolute inset-y-0 end-16 grid w-10 place-content-center">
               <button
                 type="submit"
-                className="text-black font-medium hover:text-white bg-accent hover:bg-secondary w-36 py-5"
+                className="text-black transition-all font-medium hover:text-white bg-accent hover:bg-secondary w-36 py-5"
               >
                 <span className="sr-only">Search</span>Notify Now
               </button>

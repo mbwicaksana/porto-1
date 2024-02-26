@@ -3,7 +3,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <>
-      <div className="navbar bg-secondary sticky top-0 z-30 text-accent">
+      <div className="navbar bg-secondary sticky top-0 z-30 text-gray-200">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -60,7 +60,7 @@ const Navbar = () => {
         </div>
         {/* DESKTOP NAVBAR */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-lg font-semibold">
+          <ul className="menu menu-horizontal px-1 text-lg font-medium">
             <li>
               <a href="/">Home</a>
             </li>
