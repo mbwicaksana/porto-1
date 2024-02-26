@@ -4,7 +4,7 @@ import cors from "cors";
 import favicon from "express-favicon";
 import cookieParser from "cookie-parser";
 import PostRoute from "./src/routes/PostRoute.js";
-import UserRoute from "./src/routes/UserRoute.js";
+import UserRoute from "./src/routes/UserRoute .js";
 import CommentRoute from "./src/routes/CommentRoute.js";
 
 dotenv.config();
