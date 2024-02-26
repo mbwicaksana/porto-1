@@ -326,7 +326,29 @@ export const createSession = async (req, res) => {
  * @param {Object} res - Express response object
  */
 export const deleteSession = async (req, res) => {
-  // Implementation to be added
+  try {
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) return res.sendStatus(204);
+    const user = await prisma.user.findMany({
+      where: { refreshToken: refreshToken },
+    });
+
+    if (!user) return res.sendStatus(204);
+
+    const userId = user.id;
+
+    await prisma.update({
+      data: {
+        refreshToken: null,
+      },
+      where: {
+        id: userId,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Terjadi kesalahan server" });
+  }
 };
 
 /**
