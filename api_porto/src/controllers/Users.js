@@ -313,7 +313,7 @@ export const createSession = async (req, res) => {
     });
 
     // Respond with access token
-    res.json({ accessToken, refreshToken });
+    res.json({ accessToken });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Terjadi kesalahan server" });
@@ -327,24 +327,30 @@ export const createSession = async (req, res) => {
  */
 export const deleteSession = async (req, res) => {
   try {
-    const refreshToken = req.cookies.refreshToken;
+    const refreshToken = req.headers.authorization.split(" ")[1];
+    const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN);
+    const userId = decodedToken.userId;
+
     if (!refreshToken) return res.sendStatus(204);
-    const user = await prisma.user.findMany({
-      where: { refreshToken: refreshToken },
+
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
     });
 
     if (!user) return res.sendStatus(204);
 
-    const userId = user.id;
-
-    await prisma.update({
-      data: {
-        refreshToken: null,
-      },
+    await prisma.user.update({
       where: {
         id: userId,
       },
+      data: {
+        refreshToken: null,
+      },
     });
+    res
+      .clearCookie("refreshToken")
+      .status(200)
+      .json({ message: "You've been logout" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Terjadi kesalahan server" });
@@ -357,5 +363,21 @@ export const deleteSession = async (req, res) => {
  * @param {Object} res - Express response object
  */
 export const getCurrentSession = async (req, res) => {
-  // Implementation to be added
+  try {
+    const refreshToken = req.cookies.refreshToken;
+    const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN);
+    const userId = decodedToken.userId;
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "Pengguna tidak ditemukan" });
+    }
+
+    res.status(200).json({ user });
+  } catch (error) {
+    console.error(error);
+    res.status(401).json({ message: "Token tidak valid atau kadaluarsa" });
+  }
 };

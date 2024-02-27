@@ -1,7 +1,14 @@
 import React from "react";
+import Navbar from "../components/utils/Navbar";
+import Hero from "../components/Blogs/Hero";
 
-const Blogs = () => {
-  return <div>Blogs</div>;
+const Dashboard = () => {
+  return (
+    <>
+      <Navbar />
+      <Hero />
+    </>
+  );
 };
 
-export default Blogs;
+export default Dashboard;

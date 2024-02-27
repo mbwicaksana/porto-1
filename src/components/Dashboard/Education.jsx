@@ -70,55 +70,109 @@ const Education = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mb-4 lg:mb-14">
           <div className="h-auto bg-primary-dark">
             <div className="pl-10 py-4 font- text-accent">Javascript</div>
-            <progress
-              className="progress progress-warning min-w-full bg-transparent"
-              value="80"
-              max="100"
-            ></progress>
+            <div>
+              <span id="ProgressLabel" className="sr-only">
+                Loading
+              </span>
+
+              <span
+                role="progressbar"
+                aria-labelledby="ProgressLabel"
+                aria-valuenow="75"
+                className="block rounded-full bg-transparent mt-3 w-full"
+              >
+                <span className="block h-2 rounded-full bg-accent w-5/6"></span>
+              </span>
+            </div>
           </div>
           <div className="h-auto bg-primary-dark">
             <div className="pl-10 py-4 font- text-accent">ReactJS</div>
-            <progress
-              className="progress progress-warning min-w-full bg-transparent"
-              value="60"
-              max="100"
-            ></progress>
+            <div>
+              <span id="ProgressLabel" className="sr-only">
+                Loading
+              </span>
+
+              <span
+                role="progressbar"
+                aria-labelledby="ProgressLabel"
+                aria-valuenow="75"
+                className="block rounded-full bg-transparent mt-3 w-full"
+              >
+                <span className="block h-2 rounded-full bg-accent w-5/6"></span>
+              </span>
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mb-4 lg:mb-14">
           <div className="h-auto bg-primary-dark">
             <div className="pl-10 py-4 font- text-accent">ExpressJS</div>
-            <progress
-              className="progress progress-warning min-w-full bg-transparent"
-              value="70"
-              max="100"
-            ></progress>
+            <div>
+              <span id="ProgressLabel" className="sr-only">
+                Loading
+              </span>
+
+              <span
+                role="progressbar"
+                aria-labelledby="ProgressLabel"
+                aria-valuenow="75"
+                className="block rounded-full bg-transparent mt-3 w-full"
+              >
+                <span className="block h-2 rounded-full bg-accent w-4/6"></span>
+              </span>
+            </div>
           </div>
           <div className="h-auto bg-primary-dark">
             <div className="pl-10 py-4 font- text-accent">NextJS</div>
-            <progress
-              className="progress progress-warning min-w-full bg-transparent"
-              value="50"
-              max="100"
-            ></progress>
+            <div>
+              <span id="ProgressLabel" className="sr-only">
+                Loading
+              </span>
+
+              <span
+                role="progressbar"
+                aria-labelledby="ProgressLabel"
+                aria-valuenow="75"
+                className="block rounded-full bg-transparent mt-3 w-full"
+              >
+                <span className="block h-2 rounded-full bg-accent w-3/6"></span>
+              </span>
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
           <div className="h-auto bg-primary-dark">
             <div className="pl-10 py-4 font- text-accent">MySQL</div>
-            <progress
-              className="progress progress-warning min-w-full bg-transparent"
-              value="70"
-              max="100"
-            ></progress>
+            <div>
+              <span id="ProgressLabel" className="sr-only">
+                Loading
+              </span>
+
+              <span
+                role="progressbar"
+                aria-labelledby="ProgressLabel"
+                aria-valuenow="75"
+                className="block rounded-full bg-transparent mt-3 w-full"
+              >
+                <span className="block h-2 rounded-full bg-accent w-5/6"></span>
+              </span>
+            </div>
           </div>
           <div className="h-auto bg-primary-dark">
             <div className="pl-10 py-4 font- text-accent">Wordpress</div>
-            <progress
-              className="progress progress-warning min-w-full bg-transparent"
-              value="80"
-              max="100"
-            ></progress>
+            <div>
+              <span id="ProgressLabel" className="sr-only">
+                Loading
+              </span>
+
+              <span
+                role="progressbar"
+                aria-labelledby="ProgressLabel"
+                aria-valuenow="75"
+                className="block rounded-full bg-transparent mt-3 w-full"
+              >
+                <span className="block h-2 rounded-full bg-accent w-5/6"></span>
+              </span>
+            </div>
           </div>
         </div>
         {/* END OF SKILL PROGRESS BAR */}

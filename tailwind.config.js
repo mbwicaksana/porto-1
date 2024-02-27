@@ -10,6 +10,8 @@ module.exports = {
         "react-logo": "url(./img/react-logo.png)",
         "next-logo": "url(./img/next-logo.png)",
         "express-logo": "url(./img/express-logo.png)",
+        "blog-hero-background":
+          "url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)",
       },
       colors: {
         "primary-dark": "#02050A", // used for darker background
@@ -17,6 +19,7 @@ module.exports = {
         secondary: "#141C27", // used for header
         accent: "#55E6A5", // used for font and outline
         "accent-secondary": "#A2A2A2", // used for font
+        "accent-light": "rgb(55 65 81)", // used for font (lighter)
       },
       height: {
         128: "32rem",

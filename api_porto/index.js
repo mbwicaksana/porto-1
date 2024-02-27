@@ -3,8 +3,9 @@ import express from "express";
 import cors from "cors";
 import favicon from "express-favicon";
 import cookieParser from "cookie-parser";
+import ngrok from "@ngrok/ngrok";
 import PostRoute from "./src/routes/PostRoute.js";
-import UserRoute from "./src/routes/UserRoute .js";
+import UserRoute from "./src/routes/UserRoute.js";
 import CommentRoute from "./src/routes/CommentRoute.js";
 
 dotenv.config();
@@ -25,5 +26,13 @@ app.use(UserRoute);
 app.use(CommentRoute);
 
 app.listen(process.env.PORT, () => {
-  console.log("Server is RUNNING on PORT : ", process.env.PORT);
+  ngrok
+    .connect({ addr: process.env.PORT, authtoken_from_env: true })
+    .then((listener) =>
+      console.log(
+        `Server is RUNNING at: ${listener.url()}\nServer is RUNNING on Port ${
+          process.env.PORT
+        }\nPowered by NGROK`
+      )
+    );
 });

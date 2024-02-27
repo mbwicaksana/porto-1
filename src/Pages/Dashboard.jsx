@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import Service from "../components/Service";
-import Education from "../components/Education";
-import Portfolio from "../components/Portfolio";
-import NewsLetter from "../components/NewsLetter";
-import Footer from "../components/Footer";
+import Navbar from "../components/utils/Navbar";
+import Hero from "../components/Dashboard/Hero";
+import Service from "../components/Dashboard/Service";
+import Education from "../components/Dashboard/Education";
+import Portfolio from "../components/Dashboard/Portfolio";
+import NewsLetter from "../components/Dashboard/NewsLetter";
+import Footer from "../components/utils/Footer";
 
 const Dashboard = () => {
   return (
