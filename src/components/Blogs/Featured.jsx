@@ -3,54 +3,30 @@ import React from "react";
 const Featured = () => {
   return (
     <>
-      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 bg-primary-dark bg-gradient-to-b from-black to-transparent">
+      <div className="mx-auto max-w-full bg-primary-dark bg-gradient-to-b from-black to-transparent px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <header className="text-center">
-          <h2 className="text-xl font-bold text-slate-300  sm:text-3xl mb-6 text-start">
+          <h2 className="mb-6 text-start text-xl  font-bold text-slate-300 sm:text-3xl">
             Featured Posts
           </h2>
         </header>
-
-        <div className="grid grid-rows-3 grid-flow-col gap-6">
-          <div className=" border border-accent-light  col-span-2 bg-primary-dark flex">
-            <div className="flex-none">
-              <img src="https://placehold.co/200x160" alt="..." />
-            </div>
-            <div className="flex-auto my-8 mx-6 w-32">
-              <div>NFTS</div>
-              <div className="">
-                Another World-Famous Meme Capitalizes on the NFT Hype
+        <section>
+          <div className="card max-h-full max-w-full bg-base-100 shadow-xl lg:card-side">
+            <figure>
+              <img
+                className="md:h-80 md:w-80"
+                src="https://placehold.co/700x300"
+                alt="Album"
+              />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">New album is released!</h2>
+              <p>Click the button to listen onu Spotiwhy app.</p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Listen</button>
               </div>
-              <div>Cristopher - June 24, 2021</div>
             </div>
           </div>
-          <div className=" border border-accent-light  col-span-2 bg-primary-dark flex">
-            <div className="flex-none">
-              <img src="https://placehold.co/200x160" alt="..." />
-            </div>
-            <div className="flex-auto my-8 mx-6 w-32">
-              <div>NFTS</div>
-              <div className="">
-                Another World-Famous Meme Capitalizes on the NFT Hype
-              </div>
-              <div>Cristopher - June 24, 2021</div>
-            </div>
-          </div>
-          <div className=" border border-accent-light  col-span-2 bg-primary-dark flex">
-            <div className="flex-none">
-              <img src="https://placehold.co/200x160" alt="..." />
-            </div>
-            <div className="flex-auto my-8 mx-6 w-32">
-              <div>NFTS</div>
-              <div className="">
-                Another World-Famous Meme Capitalizes on the NFT Hype
-              </div>
-              <div>Cristopher - June 24, 2021</div>
-            </div>
-          </div>
-          <div className="rounded-lg row-span-3 col-span-3  bg-slate-600">
-            4
-          </div>
-        </div>
+        </section>
       </div>
     </>
   );

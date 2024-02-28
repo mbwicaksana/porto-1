@@ -11,6 +11,8 @@ module.exports = {
         "next-logo": "url(./img/next-logo.png)",
         "express-logo": "url(./img/express-logo.png)",
         "blog-hero-background": "url(./img/hero-blogs.jpg)",
+        "737x534": "url(https://placehold.co/737x534)",
+        "210x210": "url(https://placehold.co/210x210)",
       },
       colors: {
         "primary-dark": "#02050A", // used for darker background
@@ -22,6 +24,9 @@ module.exports = {
       },
       height: {
         128: "32rem",
+      },
+      fontSize: {
+        xxs: "0.625rem",
       },
     },
   },
