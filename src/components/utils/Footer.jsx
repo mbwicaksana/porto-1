@@ -1,4 +1,5 @@
 import React from "react";
+import { Heart } from "@phosphor-icons/react";
 
 const Footer = () => {
   return (
@@ -6,10 +7,10 @@ const Footer = () => {
       <footer className="bg-primary-dark">
         <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="flex justify-center text-teal-600 dark:text-teal-300">
-            <img src="https://placehold.co/70x70" alt="logo" />
+            <Heart size={32} color="#b22222" weight="fill" />
           </div>
 
-          <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-accent-secondary italic font-light">
+          <p className="mx-auto mt-6 max-w-md text-center font-light italic leading-relaxed text-accent-secondary">
             “I always wonder why birds choose to stay in the same place when
             they can fly anywhere on the earth, then I ask myself the same
             question.” ― Harun Yahya
@@ -119,7 +120,7 @@ const Footer = () => {
                   width="16"
                   height="16"
                   fill="currentColor"
-                  className="w-6 h-6"
+                  className="h-6 w-6"
                   viewBox="0 0 16 16"
                 >
                   <path
