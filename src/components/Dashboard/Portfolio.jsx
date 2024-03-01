@@ -3,7 +3,10 @@ import React from "react";
 const Portfolio = () => {
   return (
     <>
-      <div id="portfolio" className="bg-primary-dark px-24 py-12 lg:py-24">
+      <div
+        id="portfolio"
+        className="bg-primary-dark bg-gradient-to-b from-primary-light to-transparent px-24 py-12 lg:py-24"
+      >
         <h3 className="text-lg font-semibold text-accent lg:mb-4 lg:text-xl">
           MY RECENT PORTFOLIO
         </h3>
@@ -24,7 +27,7 @@ const Portfolio = () => {
                   />
 
                   <div className="absolute inset-0 flex flex-col items-start justify-end bg-gradient-to-t from-zinc-900 p-6 ">
-                    <h3 className="text-xl font-medium font-semibold text-white">
+                    <h3 className="text-xl font-medium text-white">
                       Rajalaptop
                     </h3>
 
@@ -44,9 +47,7 @@ const Portfolio = () => {
                   />
 
                   <div className="absolute inset-0 flex flex-col items-start justify-end bg-gradient-to-t from-zinc-900 p-6 ">
-                    <h3 className="text-xl font-medium font-semibold text-white">
-                      Kliky
-                    </h3>
+                    <h3 className="text-xl font-medium text-white">Kliky</h3>
 
                     <h3 className="text-lg font-light text-accent">
                       — Wordpress
@@ -64,9 +65,7 @@ const Portfolio = () => {
                   />
 
                   <div className="absolute inset-0 flex flex-col items-start justify-end bg-gradient-to-t from-zinc-900 p-6 ">
-                    <h3 className="text-xl font-medium font-semibold text-white">
-                      Windelov
-                    </h3>
+                    <h3 className="text-xl font-medium text-white">Windelov</h3>
 
                     <h3 className="text-lg font-light text-accent">
                       — ReactJS, ExpressJS

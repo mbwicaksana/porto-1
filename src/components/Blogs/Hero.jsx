@@ -8,18 +8,17 @@ const Hero = () => {
 
         <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
           <div className="max-w-xl text-start">
-            <h1 className="text-3xl font-bold sm:text-5xl text-slate-300 drop-shadow-2xl">
+            <h1 className="text-3xl font-bold text-slate-200 drop-shadow-2xl sm:text-5xl">
               Stay in the Loop
             </h1>
 
-            <p className="mt-4 max-w-md sm:text-xl/relaxed font-normal text-accent-secondary drop-shadow-2xl">
+            <p className="mt-4 max-w-md font-normal text-accent-secondary drop-shadow-2xl sm:text-xl/relaxed">
               Tired of dry programming news?
               <br />
               Spice up your learning with Windelov's daily email! Get bite-sized
               updates, coding tips, and insightful tutorials delivered straight
               to your inbox.
-              <br />
-              <strong>All for free.</strong>
+              <strong> All for free.</strong>
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4 text-center">

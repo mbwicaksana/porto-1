@@ -3,17 +3,17 @@ import React from "react";
 const ContactForm = () => {
   return (
     <>
-      <div id="portfolio" className="bg-primary-light py-12 lg:py-24 px-24">
-        <h3 className="text-lg font-semibold lg:text-xl lg:mb-4 text-accent text-center">
+      <div id="portfolio" className="bg-primary-light px-24 py-12 lg:py-24">
+        <h3 className="text-center text-lg font-semibold text-accent lg:mb-4 lg:text-xl">
           GET IN TOUCH
         </h3>
-        <h1 className="hidden lg:block text-4xl font-bold mb-16 text-white text-center">
+        <h1 className="mb-16 hidden text-center text-4xl font-bold text-white lg:block">
           Let's discuss
           <br />
           about your future website
         </h1>
         {/* START OF FORM */}
-        <div className="rounded-lg bg-primary-light p-8 shadow-lg lg:col-span-3 lg:p-12">
+        <div className="mx-auto rounded-lg bg-primary-light p-8 shadow-lg md:w-5/6 lg:col-span-3 lg:p-12">
           <form action="#" className="space-y-4">
             <div>
               <label
@@ -73,7 +73,7 @@ const ContactForm = () => {
 
             <div>
               <label
-                htmlFor="Phone"
+                htmlFor="Message"
                 className="relative block overflow-hidden border-b border-gray-200 bg-transparent pt-3 focus-within:border-blue-600"
               >
                 <input
@@ -92,7 +92,7 @@ const ContactForm = () => {
             <div className="mt-4">
               <button
                 type="submit"
-                className="inline-block w-full rounded-lg px-5 py-3 font-medium bg-gray-800 text-white hover:bg-gray-700 sm:w-auto transition-all"
+                className="inline-block w-full rounded-lg bg-gray-800 px-5 py-3 font-medium text-white transition-all hover:bg-gray-700 sm:w-auto"
               >
                 Submit
               </button>

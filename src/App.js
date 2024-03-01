@@ -4,6 +4,7 @@ import Blogs from "./Pages/Blogs";
 import Contact from "./Pages/Contact";
 import TermsCondition from "./Pages/TermsCondition";
 import PrivacyPolicy from "./Pages/PrivacyPolicy";
+import Post from "./Pages/Post";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/terms-condition" element={<TermsCondition />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/blogs/:postId" element={<Post />} />
         </Routes>
       </Router>
     </>

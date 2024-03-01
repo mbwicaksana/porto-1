@@ -3,7 +3,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <>
-      <div className="navbar bg-secondary sticky top-0 z-30 text-gray-200">
+      <div className="navbar sticky top-0 z-30 h-14 bg-secondary text-gray-200">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -26,7 +26,7 @@ const Navbar = () => {
             {/* MOBILE NAVBAR */}
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-secondary rounded-box w-52 text-xl"
+              className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-secondary p-2 text-xl shadow"
             >
               <li>
                 <a href="/">Home</a>
@@ -60,7 +60,7 @@ const Navbar = () => {
         </div>
         {/* DESKTOP NAVBAR */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-lg font-medium">
+          <ul className="menu menu-horizontal px-1 text-base font-medium">
             <li>
               <a href="/">Home</a>
             </li>
