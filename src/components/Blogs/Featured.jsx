@@ -5,12 +5,9 @@ const Featured = () => {
     <>
       <div className="mx-auto max-w-full bg-primary-light bg-gradient-to-b from-black to-transparent px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <header className="mb-10 text-center">
-          <a
-            href="/"
-            className="mb-6 text-start text-xl font-bold text-slate-200  sm:text-3xl"
-          >
+          <div className="mb-6 text-start text-xl font-bold text-slate-200  sm:text-3xl">
             Featured Posts
-          </a>
+          </div>
         </header>
         <section>
           <div class="mb-4 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
