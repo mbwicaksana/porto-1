@@ -2,41 +2,89 @@ import React from "react";
 
 const Latest = () => {
   return (
-    <div className="flex flex-col">
-      <div className="max-h-80 bg-slate-700">
-        <h3 className="my-7 text-center text-4xl font-semibold">
-          Stay in the Loop
-        </h3>
-        <h4 className="my-5 text-center text-sm font-semibold">
-          Get the daily email from CryptoNews that makes reading the news
-          actually enjoyable. Join our mailing list to stay in the loop to stay
-          informed, for free.
-        </h4>
-        <div className="join mx-16">
-          <input className="input join-item bg-secondary" placeholder="Email" />
-          <button className="btn join-item bg-primary-light hover:bg-primary-dark">
-            Subscribe
-          </button>
+    <div className="mx-5 flex flex-col">
+      <div>
+        <h3 className="mb-10 py-2 text-3xl font-medium">Latest Stories</h3>
+        <div className="card rounded-none border-2 border-accent bg-primary-light opacity-90 shadow-xl lg:card-side lg:max-h-full">
+          <img
+            className="md:hidden"
+            src="https://placehold.co/900x400"
+            alt="Album"
+          />
+          <img
+            className="hidden md:block"
+            src="https://placehold.co/150x150"
+            alt="Album"
+          />
+
+          <div className="card-body">
+            <a
+              href="/"
+              className="card-title text-xs text-accent-secondary sm:text-sm"
+            >
+              Another World-Famous Meme Capitalizes on the NFT Hype
+            </a>
+            <p className="text-xxs font-light text-accent">
+              CRISTOPHER - JUNE 24, 2021
+            </p>
+          </div>
         </div>
-        <div>
-          <label className="label cursor-pointer">
-            <input type="checkbox" defaultChecked className="checkbox" />
-            <span className="label-text mx-2 flex-grow text-xs">
-              I've read and accept the{" "}
-              <a href="/privacy-policy" className="underline">
-                Privacy Policy.
-              </a>
-            </span>
-          </label>
+        <div className="card my-5 rounded-none border-2 border-accent bg-primary-light opacity-90 shadow-xl lg:card-side lg:max-h-full">
+          <img
+            className="md:hidden"
+            src="https://placehold.co/900x400"
+            alt="Album"
+          />
+          <img
+            className="hidden md:block"
+            src="https://placehold.co/150x150"
+            alt="Album"
+          />
+
+          <div className="card-body">
+            <a
+              href="/"
+              className="card-title text-xs text-accent-secondary sm:text-sm"
+            >
+              Another World-Famous Meme Capitalizes on the NFT Hype
+            </a>
+            <p className="text-xxs font-light text-accent">
+              CRISTOPHER - JUNE 24, 2021
+            </p>
+          </div>
+        </div>
+        <div className="card my-5 rounded-none border-2 border-accent bg-primary-light opacity-90 shadow-xl lg:card-side lg:max-h-full">
+          <img
+            className="md:hidden"
+            src="https://placehold.co/900x400"
+            alt="Album"
+          />
+          <img
+            className="hidden md:block"
+            src="https://placehold.co/150x150"
+            alt="Album"
+          />
+
+          <div className="card-body">
+            <a
+              href="/"
+              className="card-title text-xs text-accent-secondary sm:text-sm"
+            >
+              Another World-Famous Meme Capitalizes on the NFT Hype
+            </a>
+            <p className="text-xxs font-light text-accent">
+              CRISTOPHER - JUNE 24, 2021
+            </p>
+          </div>
         </div>
       </div>
-      <div className="bg-slate-600">
-        <h3 className="bg-slate-500 text-3xl">Latest Stories</h3>
-        <div className="bg-slate-500">sub 1</div>
-        <div className="bg-slate-500">sub 2</div>
-        <div className="bg-slate-500">sub 3</div>
+      <div>
+        <img
+          src="https://placehold.co/400x400"
+          alt="Album"
+          className="mx-auto my-5"
+        />
       </div>
-      <div className="bg-slate-800">3</div>
     </div>
   );
 };

@@ -9,7 +9,7 @@ const Content = () => {
           alt="..."
           className="rounded-lg object-cover"
         />
-        <p className="mt-16 text-lg font-medium leading-7 text-accent-secondary">
+        <h4 className="mt-16 py-5 text-lg font-medium leading-7 text-accent-secondary">
           There is an “architectural shift” in technology and in the world
           brought upon by cryptoassets, which many crypto supporters miss,
           according to Marc Andreessen, co-founder of venture capital powerhouse
@@ -34,7 +34,7 @@ const Content = () => {
           However, while these are interesting arguments, Andreessen stressed,
           <br />
           <br />
-          <p className="text-center text-2xl font-bold italic text-accent">
+          <p className="text-center text-xl font-bold italic text-accent lg:text-2xl">
             “I think they all miss a more fundamental point, which is that
             crypto represents an architectural shift in how technology works and
             therefore how the world works. That architectural shift is called
@@ -63,7 +63,7 @@ const Content = () => {
           money directly attached to it, said Andreessen.
           <br />
           <br />
-          <p className="text-center text-2xl font-bold italic text-accent">
+          <p className="text-center text-xl font-bold italic text-accent lg:text-2xl">
             “With crypto, you can now create thousands of new kinds of incentive
             systems for collaborative work online, since participants in a
             crypto project can get paid directly without a real-world company
@@ -91,7 +91,7 @@ const Content = () => {
           Democratic Party, Andreessen said, noting,
           <br />
           <br />
-          <p className="text-center text-2xl font-bold italic text-accent">
+          <p className="text-center text-xl font-bold italic text-accent lg:text-2xl">
             “Crypto potentially represents the creation of a whole new category
             of technology, quite literally right-wing tech that is far more
             aggressively decentralized and far more comfortable with
@@ -113,7 +113,7 @@ const Content = () => {
           pulled into this vortex and comes out the other side radically
           transformed, and in fact, this is what some of the smartest crypto
           experts are predicting,” Andreessen concluded.
-        </p>
+        </h4>
       </div>
     </>
   );

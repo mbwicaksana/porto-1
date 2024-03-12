@@ -12,21 +12,21 @@ const Post = () => {
     <>
       <Navbar />
       {/* START OF HEADER */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_164px] lg:gap-8">
-        <div className="rounded-lg">
+      <div className="grid grid-cols-1 gap-4 bg-primary-dark bg-gradient-to-t from-primary-light to-transparent lg:grid-cols-[1fr_164px] lg:gap-8 ">
+        <div>
           <Title />
         </div>
-        <div className="mr-4 mt-28 rounded-lg">
+        <div className="mr-4 rounded-lg lg:mt-28">
           <SquareAds />
         </div>
       </div>
       {/* END OF HEADER */}
       {/* START OF MAIN CONTENT */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+      <div className="grid grid-cols-1 gap-4 bg-primary-light bg-gradient-to-t from-primary-dark  to-transparent lg:grid-cols-3 lg:gap-8">
         <div className="lg:col-span-2">
           <Content />
         </div>
-        <div className="bg-gray-50">
+        <div>
           <Latest />
         </div>
       </div>
