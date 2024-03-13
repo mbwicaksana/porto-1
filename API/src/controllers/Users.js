@@ -1,6 +1,68 @@
+// Import Prisma client and necessary libraries
 import { prisma } from "../config/prisma-client.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
+/**
+ * Controller function to create a new user.
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+export const createUser = async (req, res) => {
+  try {
+    // Extract user details from request body
+    const { email, name, role, password, confirmPassword } = req.body;
+
+    // Validate password match
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: "Passwords do not match" });
+    }
+
+    // Validate password format
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      return res.status(400).json({
+        message:
+          "Password must be at least 8 characters and contain at least one uppercase letter, one lowercase letter, and one digit",
+      });
+    }
+
+    // Hash the password
+    const salt = await bcrypt.genSalt();
+    // It takes two arguments: the password to be hashed (password), and the salt generated in the previous step (salt).
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Create the new user
+    const newUser = await prisma.user.create({
+      data: {
+        email,
+        name,
+        role,
+        password: hashedPassword,
+      },
+    });
+
+    // Respond with success message and user details
+    const user = await prisma.user.findUnique({
+      where: { id: newUser.id },
+      select: {
+        name: true,
+        email: true,
+      },
+    });
+
+    res.status(201).json({ message: "User created successfully", user });
+  } catch (error) {
+    console.error(error);
+
+    // Handle duplicate email errors
+    if (error.code === "P2002") {
+      return res.status(409).json({ message: "Email already exists" });
+    }
+
+    res.status(500).json({ message: "Error creating user" });
+  }
+};
 
 /**
  * Controller function to fetch all users along with their posts and comments.
@@ -53,6 +115,7 @@ export const getUserById = async (req, res) => {
     // Parse user ID from request parameters
     const userId = parseInt(req.params.id, 10);
 
+    // Ensures that the userId extracted from the request parameter is a valid number
     if (isNaN(userId)) {
       return res.status(400).json({ message: "Invalid user ID" });
     }
@@ -98,66 +161,6 @@ export const getUserById = async (req, res) => {
 };
 
 /**
- * Controller function to create a new user.
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- */
-export const createUser = async (req, res) => {
-  try {
-    // Extract user details from request body
-    const { email, name, role, password, confirmPassword } = req.body;
-
-    // Validate password match
-    if (password !== confirmPassword) {
-      return res.status(400).json({ message: "Passwords do not match" });
-    }
-
-    // Validate password format
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    if (!passwordRegex.test(password)) {
-      return res.status(400).json({
-        message:
-          "Password must be at least 8 characters and contain at least one uppercase letter, one lowercase letter, and one digit",
-      });
-    }
-
-    // Hash the password
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Create the new user
-    const newUser = await prisma.user.create({
-      data: {
-        email,
-        name,
-        role,
-        password: hashedPassword,
-      },
-    });
-
-    // Respond with success message and user details
-    const user = await prisma.user.findUnique({
-      where: { id: newUser.id },
-      select: {
-        name: true,
-        email: true,
-      },
-    });
-
-    res.status(201).json({ message: "User created successfully", user });
-  } catch (error) {
-    console.error(error);
-
-    // Handle duplicate email errors
-    if (error.code === "P2002") {
-      return res.status(409).json({ message: "Email already exists" });
-    }
-
-    res.status(500).json({ message: "Error creating user" });
-  }
-};
-
-/**
  * Controller function to update an existing user.
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
@@ -167,6 +170,7 @@ export const updateUser = async (req, res) => {
     // Parse user ID from request parameters
     const userId = parseInt(req.params.id, 10);
 
+    // Ensures that the userId extracted from the request parameter is a valid number
     if (isNaN(userId)) {
       return res.status(400).json({ message: "Invalid user ID" });
     }
@@ -223,6 +227,7 @@ export const deleteUser = async (req, res) => {
     // Parse user ID from request parameters
     const userId = parseInt(req.params.id, 10);
 
+    // Ensures that the userId extracted from the request parameter is a valid number
     if (isNaN(userId)) {
       return res.status(400).json({ message: "Invalid user ID" });
     }
@@ -286,7 +291,7 @@ export const createSession = async (req, res) => {
       process.env.ACCESS_TOKEN,
       {
         expiresIn: "20s",
-      }
+      },
     );
 
     // Generate refresh token
@@ -295,7 +300,7 @@ export const createSession = async (req, res) => {
       process.env.REFRESH_TOKEN,
       {
         expiresIn: "1d",
-      }
+      },
     );
 
     // Update user's refresh token in database
