@@ -30,9 +30,9 @@ app.listen(process.env.PORT, () => {
     .connect({ addr: process.env.PORT, authtoken_from_env: true })
     .then((listener) =>
       console.log(
-        `Server is RUNNING at: ${listener.url()}\nServer is RUNNING on Port ${
+        `Server is RUNNING at: ${listener.url()}\n Server is RUNNING on Port ${
           process.env.PORT
-        }\nPowered by NGROK`
-      )
+        }\nPowered by NGROK`,
+      ),
     );
 });
