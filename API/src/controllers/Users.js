@@ -3,11 +3,6 @@ import { prisma } from "../config/prisma-client.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-/**
- * Controller function to create a new user.
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- */
 export const createUser = async (req, res) => {
   try {
     // Extract user details from request body
@@ -64,13 +59,14 @@ export const createUser = async (req, res) => {
   }
 };
 
-/**
- * Controller function to fetch all users along with their posts and comments.
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- */
 export const getUsers = async (req, res) => {
   try {
+    const refreshToken = req.cookies.refreshToken; // Get refresh token from cookie
+
+    if (!refreshToken) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
     // Fetch users with their associated posts and comments
     const users = await prisma.user.findMany({
       select: {
@@ -105,11 +101,6 @@ export const getUsers = async (req, res) => {
   }
 };
 
-/**
- * Controller function to fetch a user by their ID.
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- */
 export const getUserById = async (req, res) => {
   try {
     // Parse user ID from request parameters
@@ -160,13 +151,13 @@ export const getUserById = async (req, res) => {
   }
 };
 
-/**
- * Controller function to update an existing user.
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- */
 export const updateUser = async (req, res) => {
   try {
+    const refreshToken = req.cookies.refreshToken; // Get refresh token from cookie
+
+    if (!refreshToken) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
     // Parse user ID from request parameters
     const userId = parseInt(req.params.id, 10);
 
@@ -217,13 +208,13 @@ export const updateUser = async (req, res) => {
   }
 };
 
-/**
- * Controller function to delete a user.
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- */
 export const deleteUser = async (req, res) => {
   try {
+    const refreshToken = req.cookies.refreshToken; // Get refresh token from cookie
+
+    if (!refreshToken) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
     // Parse user ID from request parameters
     const userId = parseInt(req.params.id, 10);
 
@@ -255,11 +246,6 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-/**
- * Controller function to create a user session.
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- */
 export const createSession = async (req, res) => {
   const { email, password } = req.body;
 
@@ -303,11 +289,12 @@ export const createSession = async (req, res) => {
       },
     );
 
-    // Update user's refresh token in database
+    // Store both tokens in the database
     await prisma.user.update({
       where: { id },
       data: {
         refreshToken: refreshToken,
+        accessToken: accessToken, // Store access token in the database
       },
     });
 
@@ -325,18 +312,14 @@ export const createSession = async (req, res) => {
   }
 };
 
-/**
- * Controller function to delete a user session.
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- */
 export const deleteSession = async (req, res) => {
   try {
-    const refreshToken = req.headers.authorization.split(" ")[1];
-    const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN);
-    const userId = decodedToken.userId;
+    const refreshToken = req.cookies.refreshToken; // Get refresh token from cookie
 
     if (!refreshToken) return res.sendStatus(204);
+
+    const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN);
+    const userId = decodedToken.userId;
 
     const user = await prisma.user.findUnique({
       where: { id: userId },
@@ -344,32 +327,35 @@ export const deleteSession = async (req, res) => {
 
     if (!user) return res.sendStatus(204);
 
+    // Clear both access and refresh tokens from the database
     await prisma.user.update({
       where: {
         id: userId,
       },
       data: {
+        accessToken: null,
         refreshToken: null,
       },
     });
+
     res
       .clearCookie("refreshToken")
       .status(200)
-      .json({ message: "You've been logout" });
+      .json({ message: "You've been logged out" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Terjadi kesalahan server" });
   }
 };
 
-/**
- * Controller function to get current user session.
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- */
 export const getCurrentSession = async (req, res) => {
   try {
-    const refreshToken = req.cookies.refreshToken;
+    const refreshToken = req.cookies.refreshToken; // Get refresh token from cookie
+
+    if (!refreshToken) {
+      return res.status(401).json({ message: "Token tidak ditemukan" });
+    }
+
     const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN);
     const userId = decodedToken.userId;
     const user = await prisma.user.findUnique({

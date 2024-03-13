@@ -25,14 +25,18 @@ app.use(PostRoute);
 app.use(UserRoute);
 app.use(CommentRoute);
 
+// app.listen(process.env.PORT, () => {
+//   ngrok
+//     .connect({ addr: process.env.PORT, authtoken_from_env: true })
+//     .then((listener) =>
+//       console.log(
+//         `Server is RUNNING at: ${listener.url()}\nServer is RUNNING on Port ${
+//           process.env.PORT
+//         }\nPowered by NGROK`,
+//       ),
+//     );
+// });
+
 app.listen(process.env.PORT, () => {
-  ngrok
-    .connect({ addr: process.env.PORT, authtoken_from_env: true })
-    .then((listener) =>
-      console.log(
-        `Server is RUNNING at: ${listener.url()}\n Server is RUNNING on Port ${
-          process.env.PORT
-        }\nPowered by NGROK`,
-      ),
-    );
+  console.log(`Server is RUNNING on PORT ${process.env.PORT}`);
 });
