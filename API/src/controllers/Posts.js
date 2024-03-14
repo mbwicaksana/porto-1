@@ -4,7 +4,14 @@ export const getPosts = async (req, res) => {
   try {
     const posts = await prisma.post.findMany({
       include: {
-        author: true, // Include the author data in the response
+        author: {
+          select: {
+            id: true,
+            email: true,
+            name: true,
+            role: true,
+          },
+        },
       },
     });
 
@@ -22,7 +29,15 @@ export const getPostById = async (req, res) => {
     const post = await prisma.post.findUnique({
       where: { id: parseInt(id) }, // Ensure numeric ID
       include: {
-        author: true, // Include the author data in the response
+        author: {
+          // Include the author data in the response
+          select: {
+            id: true,
+            email: true,
+            name: true,
+            role: true,
+          },
+        },
       },
     });
 

@@ -1,8 +1,23 @@
-// Import Prisma client and necessary libraries
+/*
+Functions to manage user authentication, including user creation, retrieval, update, and deletion, as well as session creation, deletion, and retrieval.
+
+Dependencies:
+- prisma: Prisma client for database operations
+- bcrypt: Library for hashing passwords
+- jwt: Library for generating JSON Web Tokens
+
+Usage:
+- These functions should be used as controllers in an Express.js application to handle user authentication and authorization.
+
+@param {Object} req - The request object.
+@param {Object} res - The response object.
+*/
+
 import { prisma } from "../config/prisma-client.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+// Function to create a new user
 export const createUser = async (req, res) => {
   try {
     // Extract user details from request body
@@ -24,7 +39,6 @@ export const createUser = async (req, res) => {
 
     // Hash the password
     const salt = await bcrypt.genSalt();
-    // It takes two arguments: the password to be hashed (password), and the salt generated in the previous step (salt).
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // Create the new user
@@ -59,9 +73,11 @@ export const createUser = async (req, res) => {
   }
 };
 
+// Function to retrieve all users
 export const getUsers = async (req, res) => {
   try {
-    const refreshToken = req.cookies.refreshToken; // Get refresh token from cookie
+    // Check if refresh token is present in cookies
+    const refreshToken = req.cookies.refreshToken;
 
     if (!refreshToken) {
       return res.status(401).json({ message: "Unauthorized" });
@@ -101,12 +117,19 @@ export const getUsers = async (req, res) => {
   }
 };
 
+// Function to retrieve a user by ID
 export const getUserById = async (req, res) => {
   try {
+    // Check if refresh token is present in cookies
+    const refreshToken = req.cookies.refreshToken;
+
+    if (!refreshToken) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
     // Parse user ID from request parameters
     const userId = parseInt(req.params.id, 10);
 
-    // Ensures that the userId extracted from the request parameter is a valid number
+    // Validate user ID
     if (isNaN(userId)) {
       return res.status(400).json({ message: "Invalid user ID" });
     }
@@ -151,17 +174,20 @@ export const getUserById = async (req, res) => {
   }
 };
 
+// Function to update a user
 export const updateUser = async (req, res) => {
   try {
-    const refreshToken = req.cookies.refreshToken; // Get refresh token from cookie
+    // Check if refresh token is present in cookies
+    const refreshToken = req.cookies.refreshToken;
 
     if (!refreshToken) {
       return res.status(401).json({ message: "Unauthorized" });
     }
+
     // Parse user ID from request parameters
     const userId = parseInt(req.params.id, 10);
 
-    // Ensures that the userId extracted from the request parameter is a valid number
+    // Validate user ID
     if (isNaN(userId)) {
       return res.status(400).json({ message: "Invalid user ID" });
     }
@@ -208,17 +234,20 @@ export const updateUser = async (req, res) => {
   }
 };
 
+// Function to delete a user
 export const deleteUser = async (req, res) => {
   try {
-    const refreshToken = req.cookies.refreshToken; // Get refresh token from cookie
+    // Check if refresh token is present in cookies
+    const refreshToken = req.cookies.refreshToken;
 
     if (!refreshToken) {
       return res.status(401).json({ message: "Unauthorized" });
     }
+
     // Parse user ID from request parameters
     const userId = parseInt(req.params.id, 10);
 
-    // Ensures that the userId extracted from the request parameter is a valid number
+    // Validate user ID
     if (isNaN(userId)) {
       return res.status(400).json({ message: "Invalid user ID" });
     }
@@ -246,6 +275,7 @@ export const deleteUser = async (req, res) => {
   }
 };
 
+// Function to create a new session (login)
 export const createSession = async (req, res) => {
   const { email, password } = req.body;
 
@@ -293,7 +323,7 @@ export const createSession = async (req, res) => {
     await prisma.user.update({
       where: { id },
       data: {
-        refreshToken: refreshToken,
+        refreshToken: refreshToken, // Store refresh token in the database
         accessToken: accessToken, // Store access token in the database
       },
     });
@@ -312,6 +342,7 @@ export const createSession = async (req, res) => {
   }
 };
 
+// Function to delete a session (logout)
 export const deleteSession = async (req, res) => {
   try {
     const refreshToken = req.cookies.refreshToken; // Get refresh token from cookie
@@ -348,6 +379,7 @@ export const deleteSession = async (req, res) => {
   }
 };
 
+// Function to retrieve current session
 export const getCurrentSession = async (req, res) => {
   try {
     const refreshToken = req.cookies.refreshToken; // Get refresh token from cookie

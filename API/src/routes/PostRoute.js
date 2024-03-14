@@ -6,14 +6,14 @@ import {
   getPostById,
   updatePost,
 } from "../controllers/Posts.js";
-// import { AuthMiddleware } from "../middleware/AuthMiddleware.js";
+import { verifyToken } from "../middleware/verifyToken.js";
 
 const router = express.Router();
 
-router.get("/posts", getPosts);
-router.get("/posts/:id", getPostById);
-router.post("/posts/add", createPost);
-router.patch("/posts/edit/:id", updatePost);
-router.delete("/posts/delete/:id", deletePost);
+router.get("/posts", verifyToken, getPosts);
+router.get("/posts/:id", verifyToken, getPostById);
+router.post("/posts/add", verifyToken, createPost);
+router.patch("/posts/edit/:id", verifyToken, updatePost);
+router.delete("/posts/delete/:id", verifyToken, deletePost);
 
 export default router;

@@ -2,6 +2,12 @@ import { prisma } from "../config/prisma-client.js";
 
 export const getComments = async (req, res) => {
   try {
+    // Check if refresh token is present in cookies
+    const refreshToken = req.cookies.refreshToken;
+
+    if (!refreshToken) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
     const comments = await prisma.comment.findMany();
     res.json(comments);
   } catch (error) {
@@ -14,8 +20,15 @@ export const getCommentById = async (req, res) => {
   const { id } = req.params;
 
   try {
+    // Check if refresh token is present in cookies
+    const refreshToken = req.cookies.refreshToken;
+
+    if (!refreshToken) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
     const comment = await prisma.comment.findUnique({
-      where: { id },
+      where: { id: parseInt(id) }, // Ensure numeric ID
     });
 
     if (!comment) {
@@ -34,6 +47,12 @@ export const createComment = async (req, res) => {
   const { postId, authorId, name, email, body } = req.body;
 
   try {
+    // Check if refresh token is present in cookies
+    const refreshToken = req.cookies.refreshToken;
+
+    if (!refreshToken) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
     const comment = await prisma.comment.create({
       data: {
         post: { connect: { id: postId } },
@@ -56,6 +75,13 @@ export const updateComment = async (req, res) => {
   const { name, email, body } = req.body;
 
   try {
+    // Check if refresh token is present in cookies
+    const refreshToken = req.cookies.refreshToken;
+
+    if (!refreshToken) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
     const commentId = parseInt(id);
     const comment = await prisma.comment.update({
       where: { id: commentId },
@@ -78,8 +104,15 @@ export const deleteComment = async (req, res) => {
   const { id } = req.params;
 
   try {
+    // Check if refresh token is present in cookies
+    const refreshToken = req.cookies.refreshToken;
+
+    if (!refreshToken) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
     const comment = await prisma.comment.delete({
-      where: { id },
+      where: { id: parseInt(id) },
     });
 
     if (!comment) {

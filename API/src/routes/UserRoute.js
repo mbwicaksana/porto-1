@@ -22,6 +22,6 @@ router.delete("/users/:id", verifyToken, deleteUser);
 router.get("/myAccount", verifyToken, getCurrentSession);
 router.post("/login", createSession);
 router.delete("/logout", verifyToken, deleteSession);
-router.get("/token", refreshTokenController);
+router.get("/token", verifyToken, refreshTokenController);
 
 export default router;
