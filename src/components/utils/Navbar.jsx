@@ -41,7 +41,10 @@ const Navbar = () => {
                 <a href="/#portfolio">Portfolio</a>
               </li>
               <li>
-                <a href="contact">Contact</a>
+                <a href="/contact">Contact</a>
+              </li>
+              <li>
+                <a href="/login">Login/Register</a>
               </li>
             </ul>
           </div>
@@ -75,6 +78,11 @@ const Navbar = () => {
             </li>
             <li>
               <a href="contact">Contact</a>
+            </li>
+            <li>
+              <a href="/login" className="ml-20">
+                Login/Register
+              </a>
             </li>
           </ul>
         </div>

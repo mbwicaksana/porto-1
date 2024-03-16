@@ -5,6 +5,8 @@ import Contact from "./Pages/Contact";
 import TermsCondition from "./Pages/TermsCondition";
 import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import Post from "./Pages/Post";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/terms-condition" element={<TermsCondition />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/blogs/:postId" element={<Post />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </>
