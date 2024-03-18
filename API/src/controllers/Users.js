@@ -23,6 +23,21 @@ export const createUser = async (req, res) => {
     // Extract user details from request body
     const { email, name, role, password, confirmPassword } = req.body;
 
+    // Validate required fields
+    if (!name) {
+      return res.status(400).json({ message: "Name is required" });
+    }
+
+    if (!email) {
+      return res.status(400).json({ message: "Email is required" });
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
+
     // Validate password match
     if (password !== confirmPassword) {
       return res.status(400).json({ message: "Passwords do not match" });
@@ -33,7 +48,7 @@ export const createUser = async (req, res) => {
     if (!passwordRegex.test(password)) {
       return res.status(400).json({
         message:
-          "Password must be at least 8 characters and contain at least one uppercase letter, one lowercase letter, and one digit",
+          "Password must be at least 8 characters and contain at least one uppercase letter, one lowercase letter, and one digit number",
       });
     }
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ const RegisterForm = () => {
     confirmPassword: "",
     role: "user",
   });
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,18 +25,25 @@ const RegisterForm = () => {
         formData,
       );
       console.log(response.data); // Handle response as needed
-      // Redirect user or show success message
+      navigate("/login?registration=success");
     } catch (error) {
-      console.error("Error signing up:", error);
-      console.error(formData);
-      // Handle error (show error message, etc.)
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        console.error("Error signing up:", error.response.data.message);
+        setErrorMessage(error.response.data.message);
+      } else {
+        console.error("Error signing up:", error);
+      }
     }
   };
   return (
     <>
       <section className="bg-slate-400">
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-          <div className="max-w-xl lg:max-w-3xl">
+          <div className="max-w-xl">
             <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
               Sign Up
             </h1>
@@ -117,6 +127,9 @@ const RegisterForm = () => {
               </div>
 
               <div className="col-span-6">
+                <p className="max-w-fit text-sm text-gray-500">
+                  {errorMessage}
+                </p>
                 <p className="text-sm text-gray-500">
                   By creating an account, you agree to our{" "}
                   <a
