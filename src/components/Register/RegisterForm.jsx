@@ -25,7 +25,7 @@ const RegisterForm = () => {
         formData,
       );
       console.log(response.data); // Handle response as needed
-      navigate("/login?registration=success");
+      navigate("/login");
     } catch (error) {
       if (
         error.response &&
