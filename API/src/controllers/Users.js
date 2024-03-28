@@ -314,7 +314,7 @@ export const createSession = async (req, res) => {
     }
 
     // Extract user details
-    const { id, name, email: userEmail } = user;
+    const { id, name, email: userEmail, role } = user;
 
     // Generate access token
     const accessToken = jwt.sign(
@@ -350,7 +350,7 @@ export const createSession = async (req, res) => {
     });
 
     // Respond with access token
-    res.json({ accessToken });
+    res.json({ accessToken, role });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Terjadi kesalahan server" });

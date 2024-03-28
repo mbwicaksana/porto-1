@@ -21,10 +21,12 @@ const LoginForm = () => {
         "http://localhost:5000/login",
         formData,
       );
-      // Jika login berhasil, redirect ke halaman dashboard atau halaman yang diinginkan
-      console.log("Login successful!");
-      console.log("Access Token:", response.data.accessToken);
-      navigate("/");
+
+      if (response.data.role !== "admin") {
+        navigate("/blogs");
+      } else {
+        navigate("/dashboard");
+      }
     } catch (error) {
       if (
         error.response &&
