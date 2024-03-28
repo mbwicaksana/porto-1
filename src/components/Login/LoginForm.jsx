@@ -25,7 +25,7 @@ const LoginForm = () => {
       if (response.data.role !== "admin") {
         navigate("/blogs");
       } else {
-        navigate("/dashboard");
+        navigate("/panel");
       }
     } catch (error) {
       if (

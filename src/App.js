@@ -7,6 +7,7 @@ import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import Post from "./Pages/Post";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import Panel from "./Pages/Panel";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/blogs/:postId" element={<Post />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/panel" element={<Panel />} />
         </Routes>
       </Router>
     </>
