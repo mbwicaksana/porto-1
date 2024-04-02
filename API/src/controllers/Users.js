@@ -318,7 +318,7 @@ export const createSession = async (req, res) => {
 
     // Generate access token
     const accessToken = jwt.sign(
-      { userId: id, name, email: userEmail },
+      { userId: id, name, email: userEmail, role },
       process.env.ACCESS_TOKEN,
       {
         expiresIn: "20s",
@@ -327,7 +327,7 @@ export const createSession = async (req, res) => {
 
     // Generate refresh token
     const refreshToken = jwt.sign(
-      { userId: id, name, email: userEmail },
+      { userId: id, name, email: userEmail, role },
       process.env.REFRESH_TOKEN,
       {
         expiresIn: "1d",
@@ -346,7 +346,7 @@ export const createSession = async (req, res) => {
     // Set refresh token in cookie
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000,
+      maxAge: 24 * 60 * 60,
     });
 
     // Respond with access token

@@ -3,7 +3,8 @@ import jwt from "jsonwebtoken";
 
 export const refreshTokenController = async (req, res) => {
   try {
-    const refreshToken = req.cookies.refreshToken;
+    const { refreshToken } = req.cookies; // SOMETHING WRONG HERE
+    console.log("This is your refresh cookie", req.cookies);
     if (!refreshToken) return res.sendStatus(401);
     const user = await prisma.user.findMany({
       where: { refreshToken: refreshToken },
@@ -21,7 +22,7 @@ export const refreshTokenController = async (req, res) => {
         process.env.ACCESS_TOKEN,
         {
           expiresIn: "15s",
-        }
+        },
       );
       res.json({ accessToken: accessToken });
     });

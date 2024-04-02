@@ -27,7 +27,7 @@ export const verifyToken = async (req, res, next) => {
   // Extract token from Authorization header
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
-  
+
   // If token is missing, send 401 Unauthorized response
   if (token == null) return res.sendStatus(401);
 
@@ -38,10 +38,10 @@ export const verifyToken = async (req, res, next) => {
       console.error("Error verifying token:", error);
       return res.sendStatus(401); // Change status to 401 for consistency
     }
-    
+
     // Set decoded email as a property of the request object
     req.email = decoded.email;
-    
+
     // Move to the next middleware function
     next();
   });

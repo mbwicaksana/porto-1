@@ -21,11 +21,13 @@ const LoginForm = () => {
         "http://localhost:5000/login",
         formData,
       );
+      console.log(response);
 
       if (response.data.role !== "admin") {
         navigate("/blogs");
       } else {
-        navigate("/panel");
+        console.log(response.data);
+        navigate("/blogs");
       }
     } catch (error) {
       if (
