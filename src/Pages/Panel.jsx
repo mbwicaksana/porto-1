@@ -20,8 +20,8 @@ const Panel = () => {
 
       setToken(accessToken);
       setName(decoded.name);
+      console.log(accessToken);
       console.log(decoded);
-      console.log(token);
     } catch (error) {
       console.log(error);
     }

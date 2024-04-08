@@ -27,7 +27,7 @@ const LoginForm = () => {
         navigate("/blogs");
       } else {
         console.log(response.data);
-        navigate("/blogs");
+        navigate("/panel");
       }
     } catch (error) {
       if (

@@ -27,7 +27,6 @@ model User {
   role         UserRole
   posts        Post[]
   comments     Comment[]
-  accessToken  String?
   refreshToken String?
   Session      Session[]
 }
