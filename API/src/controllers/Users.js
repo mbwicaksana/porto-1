@@ -91,13 +91,6 @@ export const createUser = async (req, res) => {
 // Function to retrieve all users
 export const getUsers = async (req, res) => {
   try {
-    // Check if refresh token is present in cookies
-    const refreshToken = req.cookies.refreshToken;
-
-    if (!refreshToken) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-
     // Fetch users with their associated posts and comments
     const users = await prisma.user.findMany({
       select: {
@@ -135,12 +128,6 @@ export const getUsers = async (req, res) => {
 // Function to retrieve a user by ID
 export const getUserById = async (req, res) => {
   try {
-    // Check if refresh token is present in cookies
-    const refreshToken = req.cookies.refreshToken;
-
-    if (!refreshToken) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
     // Parse user ID from request parameters
     const userId = parseInt(req.params.id, 10);
 
@@ -192,13 +179,6 @@ export const getUserById = async (req, res) => {
 // Function to update a user
 export const updateUser = async (req, res) => {
   try {
-    // Check if refresh token is present in cookies
-    const refreshToken = req.cookies.refreshToken;
-
-    if (!refreshToken) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-
     // Parse user ID from request parameters
     const userId = parseInt(req.params.id, 10);
 
@@ -252,13 +232,6 @@ export const updateUser = async (req, res) => {
 // Function to delete a user
 export const deleteUser = async (req, res) => {
   try {
-    // Check if refresh token is present in cookies
-    const refreshToken = req.cookies.refreshToken;
-
-    if (!refreshToken) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-
     // Parse user ID from request parameters
     const userId = parseInt(req.params.id, 10);
 
@@ -334,19 +307,18 @@ export const createSession = async (req, res) => {
       },
     );
 
-    // Store both tokens in the database
+    // Store refresh token in the database
     await prisma.user.update({
       where: { id },
       data: {
         refreshToken: refreshToken, // Store refresh token in the database
-        accessToken: accessToken, // Store access token in the database
       },
     });
 
     // Set refresh token in cookie
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60,
+      maxAge: 24 * 60 * 60 * 1000, // Time in milisecond
     });
 
     // Respond with access token
@@ -360,7 +332,7 @@ export const createSession = async (req, res) => {
 // Function to delete a session (logout)
 export const deleteSession = async (req, res) => {
   try {
-    const refreshToken = req.cookies.refreshToken; // Get refresh token from cookie
+    const { refreshToken } = req.cookies; // Get refresh token from cookie
 
     if (!refreshToken) return res.sendStatus(204);
 
@@ -370,6 +342,7 @@ export const deleteSession = async (req, res) => {
     const user = await prisma.user.findUnique({
       where: { id: userId },
     });
+    console.log(user);
 
     if (!user) return res.sendStatus(204);
 
@@ -379,7 +352,6 @@ export const deleteSession = async (req, res) => {
         id: userId,
       },
       data: {
-        accessToken: null,
         refreshToken: null,
       },
     });

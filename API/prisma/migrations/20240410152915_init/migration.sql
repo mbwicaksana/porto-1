@@ -18,7 +18,6 @@ CREATE TABLE `User` (
     `name` VARCHAR(191) NULL,
     `password` VARCHAR(191) NOT NULL,
     `role` ENUM('admin', 'user') NOT NULL,
-    `accessToken` VARCHAR(191) NULL,
     `refreshToken` VARCHAR(191) NULL,
 
     UNIQUE INDEX `User_email_key`(`email`),

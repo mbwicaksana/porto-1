@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@ngrok/ngrok": "^1.0.0",
-    "@prisma/client": "^5.9.1",
+    "@prisma/client": "^5.12.1",
     "argon2": "^0.31.2",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
@@ -30,6 +30,6 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "prisma": "^5.9.1"
+    "prisma": "^5.12.1"
   }
 }

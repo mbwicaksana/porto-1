@@ -3,25 +3,32 @@ import jwt from "jsonwebtoken";
 
 export const refreshTokenController = async (req, res) => {
   try {
-    const { refreshToken } = req.cookies; // SOMETHING WRONG HERE
-    console.log("Received refresh token:", refreshToken);
+    const { refreshToken } = req.cookies;
+
     if (!refreshToken) return res.sendStatus(401);
-    const user = await prisma.user.findMany({
-      where: { refreshToken: refreshToken },
+
+    const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN);
+    const userId = decodedToken.userId;
+
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
     });
 
-    if (!user) return res.sendStatus(403);
+    const { id, name, email: userEmail, role } = user;
+
+    // const user = await prisma.user.findMany({
+    //   where: { refreshToken: refreshToken },
+    // });
+    // const { id, name, email: userEmail, role } = user;
+    // if (!user) return res.sendStatus(403);
 
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (error, decoded) => {
       if (error) {
         console.error("Error verifying refresh token:", error.message);
         return res.sendStatus(403);
       }
-      const userId = user.id;
-      const name = user.name;
-      const email = user.email;
       const accessToken = jwt.sign(
-        { userId, name, email },
+        { userId: id, name, email: userEmail, role },
         process.env.ACCESS_TOKEN,
         {
           expiresIn: "15s",

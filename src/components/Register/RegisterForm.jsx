@@ -20,11 +20,7 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:5000/register",
-        formData,
-      );
-      console.log(response.data); // Handle response as needed
+      await axios.post("http://localhost:5000/register", formData);
       navigate("/login");
     } catch (error) {
       if (
@@ -32,7 +28,6 @@ const RegisterForm = () => {
         error.response.data &&
         error.response.data.message
       ) {
-        console.error("Error signing up:", error.response.data.message);
         setErrorMessage(error.response.data.message);
       } else {
         console.error("Error signing up:", error);
