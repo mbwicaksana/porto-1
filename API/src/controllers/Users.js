@@ -379,6 +379,28 @@ export const getCurrentSession = async (req, res) => {
     const userId = decodedToken.userId;
     const user = await prisma.user.findUnique({
       where: { id: userId },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        role: true,
+        password: false,
+        posts: {
+          select: {
+            id: true,
+            title: true,
+            createdAt: true,
+          },
+        },
+        comments: {
+          select: {
+            postId: true,
+            name: true,
+            email: true,
+            body: true,
+          },
+        },
+      },
     });
 
     if (!user) {

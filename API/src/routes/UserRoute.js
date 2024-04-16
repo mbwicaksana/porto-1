@@ -15,11 +15,11 @@ import { refreshTokenController } from "../controllers/RefreshTokenController.js
 const router = express.Router();
 
 router.get("/users", verifyToken, getUsers);
-router.get("/users/:id", getUserById);
+router.get("/users/:id", verifyToken, getUserById);
 router.post("/register", createUser);
-router.patch("/users/:id", updateUser);
-router.delete("/users/:id", deleteUser);
-router.get("/myAccount", getCurrentSession);
+router.patch("/users/:id", verifyToken, updateUser);
+router.delete("/users/:id", verifyToken, deleteUser);
+router.get("/myAccount", verifyToken, getCurrentSession);
 router.post("/login", createSession);
 router.delete("/logout", deleteSession);
 router.get("/token", refreshTokenController);

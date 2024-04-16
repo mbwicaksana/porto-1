@@ -32,7 +32,7 @@ export const verifyToken = async (req, res, next) => {
   if (token == null) return res.sendStatus(401);
 
   // Verify the token with the secret key
-  jwt.verify(token, process.env.ACCESS_TOKEN, (error, decoded) => {
+  jwt.verify(token, process.env.ACCESS_TOKEN, (error, _) => {
     // If there's an error verifying the token, send 401 Unauthorized response
     if (error) {
       console.error("Error verifying token:", error);
@@ -40,7 +40,7 @@ export const verifyToken = async (req, res, next) => {
     }
 
     // Set decoded email as a property of the request object
-    req.email = decoded.email;
+    req.email = _.email;
 
     // Move to the next middleware function
     next();

@@ -16,12 +16,6 @@ export const refreshTokenController = async (req, res) => {
 
     const { id, name, email: userEmail, role } = user;
 
-    // const user = await prisma.user.findMany({
-    //   where: { refreshToken: refreshToken },
-    // });
-    // const { id, name, email: userEmail, role } = user;
-    // if (!user) return res.sendStatus(403);
-
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (error, decoded) => {
       if (error) {
         console.error("Error verifying refresh token:", error.message);
