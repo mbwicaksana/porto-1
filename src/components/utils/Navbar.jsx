@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false); // State to track login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const [popup, setPopup] = useState(false);
 
   // Function to fetch and check the access token
   const checkLoginStatus = async () => {
@@ -30,7 +31,9 @@ const Navbar = () => {
   const logout = async () => {
     try {
       await axios.delete("http://localhost:5000/logout");
-      navigate("/");
+      // navigate("/");
+      setIsLoggedIn(false);
+      setPopup(true);
     } catch (error) {
       console.log(error);
     }
@@ -85,7 +88,7 @@ const Navbar = () => {
                   </button>
                 ) : (
                   <a href="/login" className="ml-20">
-                    Login/Register
+                    Login / Register
                   </a>
                 )}
               </li>
@@ -129,13 +132,73 @@ const Navbar = () => {
                 </button>
               ) : (
                 <a href="/login" className="ml-20">
-                  Login/Register
+                  Login / Register
                 </a>
               )}
             </li>
           </ul>
         </div>
       </div>
+      {popup && (
+        // It used z50 so the popup always shown on the top of all pages
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+          <div
+            role="alert"
+            className=" rounded-xl border border-gray-100 bg-white p-4"
+          >
+            <div className="flex items-start gap-4">
+              <span className="text-green-600">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="h-6 w-6 shrink-0 stroke-info"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </span>
+
+              <div className="flex-1">
+                <strong className="block font-medium text-gray-900">
+                  {" "}
+                  Blast it all! Logged out!{" "}
+                </strong>
+
+                <p className="mt-1 text-sm text-gray-700">
+                  Use the Force to find your way back!
+                </p>
+              </div>
+
+              <button
+                className="text-gray-500 transition hover:text-gray-600"
+                onClick={() => setPopup(false)}
+              >
+                <span className="sr-only">Dismiss popup</span>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="h-6 w-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
