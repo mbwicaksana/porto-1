@@ -1,41 +1,23 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import checkLoginStatus from "../../libs/checkLoginStatus";
 
 const Navbar = () => {
-  const navigate = useNavigate();
-
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
   const [popup, setPopup] = useState(false);
 
-  // Function to fetch and check the access token
-  const checkLoginStatus = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/token"); // Assuming protected route for token check
-      // Check for access token in response
-      if (response.data.accessToken) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false); // Handle case where token is missing or invalid
-      }
-    } catch (error) {
-      console.error("Error checking login status:", error);
-      setIsLoggedIn(false); // Set to false on errors for safety
-    }
-  };
-
   useEffect(() => {
-    checkLoginStatus(); // Call on component mount to check initial state
+    checkLoginStatus(setIsLoggedIn); // Call on component mount to check initial state
   }, []); // Empty dependency array to run only once
 
   const logout = async () => {
     try {
       await axios.delete("http://localhost:5000/logout");
-      // navigate("/");
       setIsLoggedIn(false);
       setPopup(true);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      setIsLoggedIn(true);
     }
   };
 
